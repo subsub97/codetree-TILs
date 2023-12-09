@@ -2,6 +2,9 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+
+    static StringBuilder sb = new StringBuilder();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -11,22 +14,25 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
 
         printStar(n);
+        
+        String answer = sb.toString();
+        System.out.print(answer);
     }
 
     static void printStar(int n) {
         if(n == 0)  {
             return;
         }
-
+    
         for(int i = 0; i < n; i++) {
-            System.out.print("*" + " ");
+            sb.append("*" + " ");
         }
-        System.out.println();
+        sb.append("\n");
         printStar(n-1);
         for(int i = 0; i < n; i++) {
-            System.out.print("*" + " ");
+            sb.append("*" + " ");
         }
-        System.out.println();
+        sb.append("\n");
 
     }
 }
