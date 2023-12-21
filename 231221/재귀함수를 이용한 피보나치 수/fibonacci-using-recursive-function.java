@@ -8,17 +8,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        N = Integer.parseInt(br.readLine()) -1;
+        N = Integer.parseInt(br.readLine());
 
         int answer = fibo(N);
 
-        System.out.print(N);
+        System.out.print(answer);
     }
 
     public static int fibo(int n) {
         if(n <= 0) {
             return 0;
         }
+        
         if(n == 1) {
             return 1;
         }
