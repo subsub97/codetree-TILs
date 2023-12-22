@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-    class Student implements Comparable<Student> {
+    class Student{
         public String name;
         public int weight;
         public int height;
@@ -12,10 +12,6 @@ import java.io.*;
             this.weight = weight;
         }
 
-        @Override
-        public int compareTo(Student student) { // 키를 기준 오름차순 정렬합니다.
-            return this.height - student.height;
-        }
     };
 
 public class Main {
@@ -35,7 +31,12 @@ public class Main {
         }
 
         //Arrays.sort(students, (a,b) -> a.height - b.height);
-        Arrays.sort(students);
+        Arrays.sort(students, new Comparator<Student>() {
+            @Override
+            public int compare(Student a, Student b) { // 키를 기준 오름차순 정렬합니다.
+                return a.height - b.height;
+            }
+        });
 
         for(Student s : students) {
             System.out.println(s.name + " " + s.height + " " + s.weight);
