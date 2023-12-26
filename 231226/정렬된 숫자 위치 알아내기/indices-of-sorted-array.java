@@ -42,7 +42,12 @@ public class Main {
             numberList[i] = new NumberLocation(i,number);
         }
         
-        Arrays.sort(numberList, (a,b) -> a.number - b.number);
+        Arrays.sort(numberList, new Comparator<NumberLocation>() {
+            @Override
+            public int compare(NumberLocation a, NumberLocation b) { // 키를 기준 오름차순 정렬합니다.
+                return a.number - b.number;
+            }
+        });
 
         for(int i = 0; i < n; i++) {
             answer[numberList[i].initIndex] = i + 1;
