@@ -1,60 +1,49 @@
-import java.util.*;
 import java.io.*;
-
-/*
-풀이
-1. 최초 배열에 입력받은 인덱스 위치와 값을 기억한다.
-2. 값을 기준으로 정렬을 한다.
-3. 정렬된 위치를 기록한다.
-4. 최초 인덱스 위치를 기준으로 정렬한다. 
-5. 순서대로 3번에서 기록한 값을 출력한다.
-
-개선된 풀이
-1. 최초 배열에 입력받은 인덱스 위치와 값을 기억한다.
-2. 값을 기준으로 정렬
-3. 정렬된 값을 순회하면서 최초 인덱스 위치에 정렬된 값의 인덱스를 넣는다.
-*/
-class NumberLocation {
-    int initIndex;
-    int sortingIndex = 0;
-    int number;
-
-    NumberLocation(int i, int n) {
-        this.initIndex = i;
-        this.number = n;
-    }
-}
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        final int n;
-        NumberLocation[] numberList;
-        int answer[];
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        n = Integer.parseInt(br.readLine().trim());
-        numberList = new NumberLocation[n];
-        answer = new int[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        int cnt = Integer.parseInt(br.readLine().trim());
+        ClassA[] arr = new ClassA[cnt];
+        String str = br.readLine();
+        String[] strings = str.split(" ");
+        for (int i = 0; i < cnt; i++) {
+            arr[i] = new ClassA(Integer.parseInt(strings[i]), i+1);
+        }
 
-        for(int i = 0; i < n; i++) { //주어진 숫자번호와 인덱스 위치를 배열에 추가
-            int number = Integer.parseInt(st.nextToken());
-            numberList[i] = new NumberLocation(i,number);
-        }
-        
-        Arrays.sort(numberList, new Comparator<NumberLocation>() {
-            @Override
-            public int compare(NumberLocation a, NumberLocation b) { // 키를 기준 오름차순 정렬합니다.
-                return a.number - b.number;
-            }
-        });
+        Arrays.sort(arr);
 
-        for(int i = 0; i < n; i++) {
-            answer[numberList[i].initIndex] = i + 1;
+        int[] answer = new int[cnt];
+
+        for(int i = 0; i < cnt; i++)
+            answer[arr[i].getRank()-1] = i+1; // 인덱스 보정
+
+        // 출력:
+        for(int i = 0; i < cnt; i++){
+            System.out.print(answer[i] + " ");
         }
-        
-        for(int index: answer) {
-            System.out.print(index + " ");
-        }
+
+    }
+}
+
+class ClassA implements Comparable<ClassA>{
+    private int num;
+    private int rank;
+
+    public ClassA(int num, int rank) {
+        this.num = num;
+        this.rank = rank;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    @Override
+    public int compareTo(ClassA o) {
+        if(this.num != o.num)
+            return this.num - o.num;
+        return this.rank - o.rank;
     }
 }
