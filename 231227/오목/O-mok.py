@@ -27,5 +27,6 @@ def check(arr):
                         print(f'{i} {j}')
 
                         return 0
+    print('0')
 
 check(arr)
