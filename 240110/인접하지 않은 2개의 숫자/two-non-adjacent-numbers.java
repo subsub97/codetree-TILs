@@ -9,7 +9,7 @@ public class Main {
         int n = Integer.parseInt(br.readLine().trim());
         int[]  numArray = new int[n];
         int maxSum = 0;
-        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i = 0; i <n; i++) {
             numArray[i] = Integer.parseInt(st.nextToken());
         }
