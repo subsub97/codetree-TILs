@@ -15,9 +15,13 @@ public class Main {
             if(word.charAt(i) == secondChar) {
                 convertWord[i] = firstChar;
             }
-            convertWord[i] = word.charAt(i);
+            else{
+                convertWord[i] = word.charAt(i);
+            }
+            
         }
 
+        
         System.out.print(String.valueOf(convertWord));
 
     }
