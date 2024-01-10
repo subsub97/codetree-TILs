@@ -8,7 +8,8 @@ public class Main {
         
         int n;
         char[] line = new char[MAX_SIZE];
-        int[] countArray = new int[MAX_SIZE];
+        int[] countWhiteArray = new int[MAX_SIZE];
+        int[] countBlackArray = new int[MAX_SIZE];
         int currentIndex = 100000;
         int[] answerArray = new int[3];
 
@@ -24,7 +25,7 @@ public class Main {
             if(direction == 'L') {
                 while(count < repeatCount) {
                     line[currentIndex] = 'W';
-                    countArray[currentIndex] += 1;
+                    countWhiteArray[currentIndex] += 1;
                     if(count + 1 != repeatCount) currentIndex--;
                     count++;
                 }
@@ -33,7 +34,7 @@ public class Main {
             else { // 'R'인 경우
                 while(count < repeatCount){
                     line[currentIndex] = 'B';
-                    countArray[currentIndex] += 1;
+                    countBlackArray[currentIndex] += 1;
                     if(count + 1 != repeatCount) currentIndex++;
                     count++;
                 }
@@ -43,15 +44,16 @@ public class Main {
 
         for(int i = 0; i < line.length; i++)  {
             char color = line[i];
-            if(color == 'W' && countArray[i] < 4) {
-                answerArray[0] += 1;
-            }
-            else if(color == 'B' && countArray[i] < 4) {
-                answerArray[1] += 1;
-            }
-            else if (countArray[i] >= 4){
+            if (countWhiteArray[i] >= 2 && countBlackArray[i] >= 2){
                 answerArray[2] += 1;
             }
+            else if(color == 'W' ) {
+                answerArray[0] += 1;
+            }
+            else if(color == 'B') {
+                answerArray[1] += 1;
+            }
+
         }
 
         for(int i = 0; i < 3; i++) {
