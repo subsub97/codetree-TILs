@@ -51,6 +51,7 @@ public class Main {
                         if(sectionNumbers[k] == B[l] && used[l] == false) {
                             used[l] = true;
                             check = true;
+                            break;
                         }
                     }
                     if(!check) {
