@@ -13,7 +13,7 @@ public class Main {
         int[] numbers = new int[n];
         int[] A = new int[3];
         int[] B = new int[3];
-    
+
         for(int i = 0; i < 3; i++) {
             A[i] = Integer.parseInt(st1.nextToken()) - 1;
         }
@@ -25,7 +25,7 @@ public class Main {
         for(int i = 0; i < n; i++) {
             numbers[i] = i+1;
         }
-        
+
         int[][] possibleNumber = new int[3][n];
 
         //겹치는 경우를 빼주면 된다.
@@ -36,7 +36,7 @@ public class Main {
             for(int j = 1; j < 3; j++) {
                 int upNumber = (A[i] + j) % (n-1);
                 int downNumber = (A[i] - j) < 0 ? (A[i] - j) + n : (A[i] - j);
-                
+
                 possibleNumber[i][upNumber] = 1;
                 possibleNumber[i][downNumber] = 1;
             }
@@ -51,14 +51,14 @@ public class Main {
 
 
         }
-        
+
         int ans = 1;
         for(int i =0; i < 3; i++) {
             int cnt = 0;
             for(int j = 0; j < n; j++) {
-                if(possibleNumber[i][j] == 0) cnt++;
+                if(possibleNumber[i][j] == 1) cnt++;
             }
-            ans *= cnt;
+            ans *= (10 - cnt);
         }
 
         System.out.print(250 - ans);
