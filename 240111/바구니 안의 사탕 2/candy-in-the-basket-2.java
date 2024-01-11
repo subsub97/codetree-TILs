@@ -18,7 +18,7 @@ public class Main {
             int candyAmount = Integer.parseInt(candyInfoToken.nextToken());
             int location = Integer.parseInt(candyInfoToken.nextToken());
 
-            basketLocation[location] = candyAmount;
+            basketLocation[location] += candyAmount;
         }
 
         int ans = Integer.MIN_VALUE;
