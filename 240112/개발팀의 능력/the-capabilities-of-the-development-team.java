@@ -28,7 +28,7 @@ public class Main {
                             if(teamA != teamB && teamA != solo && teamB != solo){
                             int max = Math.max(Math.max(teamA,teamB),solo);
                             int min = Math.min(Math.min(teamA,teamB),solo);
-                            
+
                             ans = Math.min(ans,max - min);
                             }
                         }
@@ -36,7 +36,12 @@ public class Main {
                 }
             }
         }
-
-        System.out.print(ans);
+        if(ans == Integer.MAX_VALUE){
+            System.out.print(-1);
+        }
+        else{
+            System.out.print(ans);
+        }
+        
     }
 }
