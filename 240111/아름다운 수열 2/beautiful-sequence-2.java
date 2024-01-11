@@ -29,16 +29,34 @@ public class Main {
         for(int i = 0; i < m; i++) {
             bSum += B[i];
         }
+
         int ans =0;
+        
+
         for(int i = 0; i <= n - m; i++) {
             int curSum = 0;
+            int[] sectionNumbers = new int[m];
 
             for(int j = 0; j < m; j++) {
                 curSum += A[i+j];
+                sectionNumbers[j] = A[i+j];
             }
             
             if(bSum == curSum) {
-                ans++;
+                boolean check = false;
+                for(int k = 0; k < m; k++) {
+                    check = false;
+                    for(int l = 0; l < m; l++) {
+                        if(sectionNumbers[k] == B[l]) {
+                            check = true;
+                        }
+                    }
+                    if(!check) {
+                        break;
+                    }
+                }
+                if(check)
+                    ans++;
             }
         }
 
