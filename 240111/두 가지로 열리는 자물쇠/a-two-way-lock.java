@@ -33,7 +33,7 @@ public class Main {
                 if(second[i]+k<=0){
                     second_can[i][k+2]=N+second[i]+k;
                 }else if (second[i]+k>N) {
-                    second_can[i][k+2]=second[i]+k-N};
+                    second_can[i][k+2]=second[i]+k-N;}
                 else{
                     second_can[i][k+2]=second[i]+k;
                 }
@@ -45,13 +45,13 @@ public class Main {
             for (int j=0; j<5; j++){
                 for (int k=0; k<5; k++){
                     if(first_can[i][j]==second_can[i][k]){
+
                         cnt+=1;
                     }
                 }
             }
-            if(cnt!=0) {
-                sum *= cnt;
-            }
+
+            sum *= cnt;
             cnt=0;
         }
         System.out.println(250-sum);
