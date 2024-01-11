@@ -19,7 +19,7 @@ public class Main {
 
         int ans = Integer.MAX_VALUE;
 
-        for(int i = 0; i < n-t; i++)  {
+        for(int i = 0; i <= n-t; i++)  {
             int curCost = 0;
 
             for(int j = i; j < t + i; j++) {
