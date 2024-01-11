@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-    public static final int MAX_SIZE = 1000000;
+    public static final int MAX_SIZE = 101;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,10 +23,11 @@ public class Main {
 
         int ans = Integer.MIN_VALUE;
 
-        for(int i = K; i < MAX_SIZE - K; i++) {
+        for(int i = K; i < MAX_SIZE; i++) {
             int curSum = 0;
             for(int j = i - K; j <= i + K; j++) {
-                curSum += basketLocation[j];
+                if(j >= 0 && j < MAX_SIZE)
+                    curSum += basketLocation[j];
             }
             ans = Math.max(ans, curSum);
         }
