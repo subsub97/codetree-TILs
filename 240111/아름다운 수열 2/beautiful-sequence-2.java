@@ -43,11 +43,13 @@ public class Main {
             }
             
             if(bSum == curSum) {
+                boolean[] used = new boolean[m];
                 boolean check = false;
                 for(int k = 0; k < m; k++) {
                     check = false;
                     for(int l = 0; l < m; l++) {
-                        if(sectionNumbers[k] == B[l]) {
+                        if(sectionNumbers[k] == B[l] && used[l] == false) {
+                            used[l] = true;
                             check = true;
                         }
                     }
