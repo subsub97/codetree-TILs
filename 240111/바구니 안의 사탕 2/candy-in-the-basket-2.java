@@ -23,7 +23,7 @@ public class Main {
 
         int ans = Integer.MIN_VALUE;
 
-        for(int i = K; i < MAX_SIZE; i++) {
+        for(int i = 0; i <= MAX_SIZE; i++) {
             int curSum = 0;
             for(int j = i - K; j <= i + K; j++) {
                 if(j >= 0 && j < MAX_SIZE)
