@@ -25,13 +25,15 @@ public class Main {
             for (int k=-2; k<3; k++) {
                 if (first[i] + k <= 0) {
                     first_can[i][k + 2] = N + first[i] + k;
-                }
-                else{
+                } else if (first[i]+k>N) {
+                    first_can[i][k+2]=first[i]+k-N;
+                } else{
                     first_can[i][k+2]=first[i]+k;
                     }
                 if(second[i]+k<=0){
                     second_can[i][k+2]=N+first[i]+k;
-                }
+                }else if (second[i]+k>N) {
+                    second_can[i][k+2]=second[i]+k-N;}
                 else{
                     second_can[i][k+2]=second[i]+k;
                 }
