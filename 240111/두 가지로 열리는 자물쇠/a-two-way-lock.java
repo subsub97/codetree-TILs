@@ -34,15 +34,15 @@ public class Main {
             possibleNumber[i][B[i]] = 1;
 
             for(int j = 1; j < 3; j++) {
-                int upNumber = (A[i] + j) % (n);
-                int downNumber = (A[i] - j) < 0 ? (A[i] - j) + n : (A[i] - j);
+                int upNumber = (A[i] + j) > n ? (A[i] + j) % n  : (A[i] + j) % (n+1);
+                int downNumber = (A[i] - j) <= 0 ? (A[i] - j) + n : (A[i] - j);
 
                 possibleNumber[i][upNumber] = 1;
                 possibleNumber[i][downNumber] = 1;
             }
 
             for(int j = 1; j < 3; j++) {
-                int upNumber = (B[i] + j) % (n);
+                int upNumber = (B[i] + j) > n ? (B[i] + j) % n  : (B[i] + j) % (n+1);
                 int downNumber = (B[i] - j) <= 0 ? (B[i] - j) + n : (B[i] - j);
 
                 possibleNumber[i][upNumber] = 1;
@@ -55,18 +55,13 @@ public class Main {
         int ans = 1;
         for(int i =0; i < 3; i++) {
             int cnt = 0;
-            for(int j = 0; j < n; j++) {
+            for(int j = 0; j <= n; j++) {
                 if(possibleNumber[i][j] == 1) cnt++;
             }
             ans *= (10 - cnt);
         }
-        if(n < 5){
-            System.out.print(n * n *n);
-        }
-        else{
-            System.out.print(250 - ans);
-        }
-        
+
+        System.out.print(250 - ans);
 
     }
 }
