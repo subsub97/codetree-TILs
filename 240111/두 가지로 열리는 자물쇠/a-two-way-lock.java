@@ -33,7 +33,7 @@ public class Main {
                 if(second[i]+k<=0){
                     second_can[i][k+2]=N+second[i]+k;
                 }else if (second[i]+k>N) {
-                    second_can[i][k+2]=second[i]+k-N;}
+                    second_can[i][k+2]=second[i]+k-N};
                 else{
                     second_can[i][k+2]=second[i]+k;
                 }
