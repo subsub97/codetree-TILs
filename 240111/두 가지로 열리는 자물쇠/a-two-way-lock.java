@@ -61,7 +61,11 @@ public class Main {
             ans *= (10 - cnt);
         }
 
-        System.out.print(250 - ans);
-
+        if(n < 5){
+            System.out.print(n * n *n);
+        }
+        else{
+            System.out.print(250 - ans);
+        }
     }
 }
