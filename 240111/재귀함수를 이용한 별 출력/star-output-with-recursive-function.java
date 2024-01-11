@@ -1,6 +1,11 @@
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
-        starPrint(5);
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T = sc.nextInt();
+        starPrint(T);
     }
 
     public static void starPrint(int n){
