@@ -19,21 +19,23 @@ public class Main {
         int ans = 0;
 
         for(int i = 0; i < n; i++) {
-            int[] sectionNumbers = new int [n];
-            int exists = 1;
             for(int j = i; j < n; j++) {
-                sectionNumbers[j] = numbers[j];
-                int sectionSum = 0;
-                sectionSum += sectionNumbers[j];
 
+                int sectionSum = 0;
+                for(int k = i; k <= j; k++) { 
+                       sectionSum += numbers[k];
+                    }
                 double sectionAverage = (double)sectionSum / (j - i + 1);
 
+                int exist = 1;
+
                 for(int k = i; k <= j; k++) {
-                    if(sectionNumbers[k] == sectionAverage) {
-                        
-                        ans++;
-                        exists = 0;
+                    if(numbers[k] == sectionAverage) {
+                        exist = 0;
                     }
+                }
+                if(exist == 0) {
+                    ans++;
                 }
             }
         }
