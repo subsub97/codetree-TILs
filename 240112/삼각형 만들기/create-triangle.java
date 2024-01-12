@@ -2,6 +2,9 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+
+    public static final int OFFSET = 10000;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -13,8 +16,8 @@ public class Main {
         for(int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
-            xs[i] = Integer.parseInt(st.nextToken());
-            ys[i] = Integer.parseInt(st.nextToken());
+            xs[i] = Integer.parseInt(st.nextToken()) + OFFSET;
+            ys[i] = Integer.parseInt(st.nextToken()) + OFFSET;
         }
 
         int ans = Integer.MIN_VALUE;
