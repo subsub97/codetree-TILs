@@ -19,12 +19,15 @@ public class Main {
         
         int ans = -1;
 
-        for(int i = 0; i < n - k; i++) {
+        for(int i = 0; i < n; i++) {
             int curNumber = bombs[i];
             for(int j = i + 1; j <= k + i; j++) {
-                if(bombs[j] == curNumber) {
+                if(j < n){
+                    if(bombs[j] == curNumber) {
                     ans = Math.max(ans,bombs[j]);
                 }
+                }
+
             }
         }
 
