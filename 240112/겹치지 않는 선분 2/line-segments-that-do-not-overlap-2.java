@@ -32,7 +32,6 @@ public class Main {
                         //겹치는 경우
                         overlapLine[i] = true;
                         overlapLine[j] = true;
-                        break;
                     }
                 }
 
