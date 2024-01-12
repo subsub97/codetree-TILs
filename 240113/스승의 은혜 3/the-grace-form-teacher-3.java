@@ -54,7 +54,8 @@ public class Main {
 
         Arrays.sort(prices, new Comparator<int[]>(){
             public int compare(int[] a, int[] b) {
-                return Integer.compare(a[1],b[1]);
+                int secondCompare = Integer.compare(a[1],b[1]);
+                return (secondCompare != 0) ? secondCompare : Integer.compare(a[0],b[0]);
             }
         });
 
