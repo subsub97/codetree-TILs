@@ -47,10 +47,10 @@ public class Main {
                                 xLen = Math.abs(x1 - x2);
                             }
                             else if(y1 == y3) {
-                                xLen = Math.abs(y1 - y3);
+                                xLen = Math.abs(x1 - x3);
                             }
                             else if(y2 == y3) {
-                                xLen = Math.abs(y2 - y3);
+                                xLen = Math.abs(x2 - x3);
                             }
 
                             ans = Math.max(ans,xLen * yLen);
