@@ -14,11 +14,8 @@ public class Main {
         for(int i = 1; i <= n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
-            int tempa = Integer.parseInt(st.nextToken()) + OFFSET;
-            int tempb = Integer.parseInt(st.nextToken()) + OFFSET;
-
-            xStarts[i] = Math.min(tempb,tempa);
-            xEnds[i] = Math.max(tempa,tempb);
+            xStarts[i] = Integer.parseInt(st.nextToken()) + OFFSET; 
+            xEnds[i] = Integer.parseInt(st.nextToken()) + OFFSET;
 
         }
 
