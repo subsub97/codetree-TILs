@@ -28,7 +28,7 @@ public class Main {
             int cnt = 0;
             for(int j = 0; j < n; j++) {  
                 if(i == j) {
-                    if(curSum >= prices[j]/2 + fees[j]){
+                    if(curSum >= (prices[j]/2 + fees[j])){
                         curSum -= prices[j] / 2;
                         curSum -= fees[j];
                         cnt++;
