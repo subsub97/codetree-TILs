@@ -14,30 +14,31 @@ public class Main {
         for(int i = 1; i <= n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
-            xStarts[i] = Integer.parseInt(st.nextToken()) + OFFSET;
-            xEnds[i] = Integer.parseInt(st.nextToken()) + OFFSET;
-       
+            int tempa = Integer.parseInt(st.nextToken()) + OFFSET;
+            int tempb = Integer.parseInt(st.nextToken()) + OFFSET;
+
+            xStarts[i] = Math.min(tempb,tempa);
+            xEnds[i] = Math.max(tempa,tempb);
+
         }
 
         int ans = 0;
         boolean[] overlapLine = new boolean[n+1];
 
         for(int i = 1; i < n+1; i++) {
-            boolean overlap = false;
-            if(!overlapLine[i]){
+
                 for(int j = i +1; j < n + 1; j++ )  {
                     if(xStarts[i] <= xStarts[j] == xEnds[i] > xEnds[j]) {
                         //겹치는 경우
-                        overlap = true;
                         overlapLine[i] = true;
                         overlapLine[j] = true;
                         break;
                     }
                 }
-            }
+
         }
         for(int i = 1; i <= n; i++) {
-            if(overlapLine[i]){
+            if(!overlapLine[i]){
                 ans++;
             }
         }
