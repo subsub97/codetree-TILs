@@ -23,41 +23,12 @@ public class Main {
 
         Arrays.sort(prices, new Comparator<int[]>(){
             public int compare(int[] a, int[] b) {
-                int firstCompare = Integer.compare(a[0],b[0]);
-                return (firstCompare != 0) ? firstCompare : Integer.compare(a[1], b[1]);
+                
+                return Integer.compare(a[0] + a[1] ,b[0] + b[1]);
             }
         });
         
         int ans = 0;
-
-        for(int i = 0; i < n; i++) {
-            int curSum = budget;
-            int cnt = 0;
-            for(int j = 0; j < n; j++) {  
-                if(i == j) {
-                    if(curSum >= ((prices[j][0]/2) + prices[j][1])){
-                        curSum -= prices[j][0] / 2;
-                        curSum -= prices[j][1];
-                        cnt++;
-                    }
-                }
-                else{
-                    if(curSum >= prices[j][0] + prices[j][1]){
-                        curSum -= (prices[j][0] + prices[j][1]);
-                        cnt++;
-                    }
-                }
-            }
-            ans = Math.max(ans,cnt);
-        }
-
-
-        Arrays.sort(prices, new Comparator<int[]>(){
-            public int compare(int[] a, int[] b) {
-                int secondCompare = Integer.compare(a[1],b[1]);
-                return (secondCompare != 0) ? secondCompare : Integer.compare(a[0],b[0]);
-            }
-        });
 
         for(int i = 0; i < n; i++) {
             int curSum = budget;
