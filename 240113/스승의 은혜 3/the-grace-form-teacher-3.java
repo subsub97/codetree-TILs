@@ -23,7 +23,8 @@ public class Main {
 
         Arrays.sort(prices, new Comparator<int[]>(){
             public int compare(int[] a, int[] b) {
-                return Integer.compare(a[0],b[0]);
+                int firstCompare = Integer.compare(a[0],b[0]);
+                return (firstCompare != 0) ? firstCompare : Integer.compare(a[1], b[1]);
             }
         });
         
@@ -57,7 +58,7 @@ public class Main {
             }
         });
 
-                for(int i = 0; i < n; i++) {
+        for(int i = 0; i < n; i++) {
             int curSum = budget;
             int cnt = 0;
             for(int j = 0; j < n; j++) {  
