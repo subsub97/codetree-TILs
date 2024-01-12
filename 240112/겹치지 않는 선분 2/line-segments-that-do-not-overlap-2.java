@@ -26,8 +26,8 @@ public class Main {
         boolean[] overlapLine = new boolean[n+1];
 
         for(int i = 1; i < n+1; i++) {
-
                 for(int j = 0; j < n + 1; j++ )  {
+                    if(i == j) continue;
                     if((xStarts[i] <= xStarts[j] && xEnds[i] >= xEnds[j])) {
                         //겹치는 경우
                         overlapLine[i] = true;
