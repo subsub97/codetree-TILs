@@ -26,6 +26,10 @@ public class Main {
                 return Integer.compare(a[0],b[0]);
             }
         });
+
+        for(int i = 0; i < n; i++) {
+            System.out.println(prices[i][0]);
+        }
         
         int ans = 0;
 
@@ -34,7 +38,7 @@ public class Main {
             int cnt = 0;
             for(int j = 0; j < n; j++) {  
                 if(i == j) {
-                    if(curSum >= (prices[j][0]/2 + prices[j][0])){
+                    if(curSum >= (prices[j][0]/2 + prices[j][1])){
                         curSum -= prices[j][0] / 2;
                         curSum -= prices[j][1];
                         cnt++;
