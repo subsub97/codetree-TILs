@@ -26,10 +26,6 @@ public class Main {
                 return Integer.compare(a[0],b[0]);
             }
         });
-
-        for(int i = 0; i < n; i++) {
-            System.out.println(prices[i][0]);
-        }
         
         int ans = 0;
 
