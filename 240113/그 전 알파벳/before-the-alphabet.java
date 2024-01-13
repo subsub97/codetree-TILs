@@ -8,7 +8,7 @@ public class Main {
         char alpa = br.readLine().charAt(0);
         int number = ((int)alpa - 1);
         if(number < 97) {
-            number += 97;
+            number += 26;
         }
         System.out.print((char)number);
     }
