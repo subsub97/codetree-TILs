@@ -6,7 +6,10 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         char alpa = br.readLine().charAt(0);
-        
-        System.out.print((char)((int)alpa - 1));
+        int number = ((int)alpa - 1);
+        if(number < 97) {
+            number += 97;
+        }
+        System.out.print((char)number);
     }
 }
