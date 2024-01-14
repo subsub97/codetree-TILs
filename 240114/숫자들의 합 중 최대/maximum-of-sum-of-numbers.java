@@ -13,8 +13,9 @@ public class Main {
         int ans = 0;
 
         for(int i = a; i <= b; i++) {
-            String stringNumber = Integer.toString(a);
+            String stringNumber = Integer.toString(i);
             int curSum = 0;
+            
             for(int j = 0; j < stringNumber.length(); j++) {
                 curSum += Integer.parseInt(stringNumber.substring(j,j+1));
                 
