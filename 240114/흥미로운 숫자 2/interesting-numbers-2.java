@@ -30,6 +30,16 @@ public class Main {
         }
 
         if(map.size() == 2) {
+            int cnt = 0;
+
+            for (String key : map.keySet()) {
+                if(map.get(key) >= 2) {
+                    cnt++;
+                }
+            }
+            if(cnt >= 2) {
+                return false;
+            }
             return true;
         }
         else{
