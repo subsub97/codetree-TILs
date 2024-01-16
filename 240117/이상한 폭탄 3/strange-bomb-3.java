@@ -22,10 +22,10 @@ public class Main {
         for (int i = 1; i <= maxNumber ; i++) {
             // i번 폭탄이 몇개 터지는지 확인
             boolean[] explosion = new boolean[n];
-            int cnt = 0;
+            int cnt = 1;
             for (int j = 0; j < n; j++) {
                 if(bombs[j] == i) {
-                    for (int l = j; l <= k; l++) {
+                    for (int l = j+1; l < k; l++) {
                         if(bombs[l] == i && !explosion[l]) {
                             explosion[l] = true;
                             cnt++;
@@ -38,8 +38,12 @@ public class Main {
                 ans = i;
             }
         }
-
-        System.out.println(ans);
         
+        if(ans == 1) {
+            System.out.print(0);
+        }
+        else
+            System.out.println(ans);
+
     }
 }
