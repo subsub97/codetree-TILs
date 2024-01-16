@@ -17,7 +17,7 @@ public class Main {
             maxNumber = Math.max(bombs[i], maxNumber);
         }
 
-        int maxCnt = 0;
+        int maxCnt = 1;
         int ans = 0;
         for (int i = 1; i <= maxNumber ; i++) {
             // i번 폭탄이 몇개 터지는지 확인
@@ -25,11 +25,14 @@ public class Main {
             int cnt = 1;
             for (int j = 0; j < n; j++) {
                 if(bombs[j] == i) {
-                    for (int l = j+1; l < k; l++) {
-                        if(bombs[l] == i && !explosion[l]) {
-                            explosion[l] = true;
-                            cnt++;
+                    for (int l = 1; l < k; l++) {
+                        if(j + l < n){
+                            if(bombs[j+l] == i && !explosion[j+l]) {
+                                explosion[l] = true;
+                                cnt++;
                         }
+                        }
+
                     }
                 }
             }
@@ -38,12 +41,8 @@ public class Main {
                 ans = i;
             }
         }
-        
-        if(ans == 1) {
-            System.out.print(0);
-        }
-        else
-            System.out.println(ans);
+
+        System.out.println(ans);
 
     }
 }
