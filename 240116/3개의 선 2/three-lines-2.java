@@ -37,7 +37,7 @@ public class Main {
                     }
                     if(success){
                         ans = 1;
-                        
+                        break;
                     }
 
                     // x축에 평행한 직선 2개와 y축에 평행한 직선 1개로
