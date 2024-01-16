@@ -36,7 +36,7 @@ public class Main {
                     }
                 }
             }
-            if(cnt > maxCnt) {
+            if(cnt >= maxCnt) {
                 maxCnt = cnt;
                 ans = i;
             }
