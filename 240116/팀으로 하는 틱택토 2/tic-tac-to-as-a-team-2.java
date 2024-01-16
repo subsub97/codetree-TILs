@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException{
@@ -20,7 +19,7 @@ public class Main {
         for (int i = 1; i <= 9; i++) {
             for (int j = i+1; j <= 9 ; j++) {
                 // i와 j가 한팀
-
+                boolean isWin = false;
                 for (int k = 0; k < 3; k++) {
                     if(k == 0){
                         if((tictackto[0][0] == i || tictackto[0][0] == j) &&
@@ -28,7 +27,7 @@ public class Main {
                                 (tictackto[2][2] == i || tictackto[2][2] == j )) {
                             // 가로 틱텍토 성립인 경우
                             if(tictackto[0][0] != tictackto[1][1] || tictackto[0][0] != tictackto[2][2]) {
-                                cnt++;
+                                isWin = true;
                             }
                         }
 
@@ -37,7 +36,7 @@ public class Main {
                                 (tictackto[2][0] == i || tictackto[2][0] == j )) {
                             // 가로 틱텍토 성립인 경우
                             if(tictackto[0][2] != tictackto[1][1] || tictackto[0][2] != tictackto[2][0]) {
-                                cnt++;
+                                isWin = true;
                             }
                         }
                     }
@@ -47,7 +46,7 @@ public class Main {
                             (tictackto[2][k] == i || tictackto[2][k] ==j )) {
                         // 가로 틱텍토 성립인 경우
                         if(tictackto[0][k] != tictackto[1][k] || tictackto[0][k] != tictackto[2][k]) {
-                          cnt++;
+                            isWin = true;
                         }
                     }
 
@@ -57,11 +56,12 @@ public class Main {
                             (tictackto[k][2] == i || tictackto[k][2] == j )) {
                         // 가로 틱텍토 성립인 경우
                         if(tictackto[k][0] != tictackto[k][1] || tictackto[k][0] != tictackto[k][2]) {
-                            cnt++;
+                            isWin = true;
                         }
                     }
-
-
+                }
+                if(isWin){
+                    cnt++;
                 }
 
             }
