@@ -46,6 +46,8 @@ public class Main {
 
 
         }
+
+        ans = Math.max(Math.max(numbers[0],numbers[n-1]),ans);
         System.out.println(ans);
     }
 }
