@@ -10,7 +10,7 @@ public class Main {
         int[] x = new int[n];
         int[] y = new int[n];
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < n; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
             x[i] = Integer.parseInt(st.nextToken());
