@@ -14,7 +14,7 @@ public class Main {
                 tictackto[i][j] = Integer.parseInt(num.substring(j,j+1));
             }   
         }
-        
+
         int cnt = 0;
         
         for (int i = 1; i <= 9; i++) {
@@ -46,7 +46,7 @@ public class Main {
                             (tictackto[1][k] == i || tictackto[1][k] == j) &&
                             (tictackto[2][k] == i || tictackto[2][k] ==j )) {
                         // 가로 틱텍토 성립인 경우
-                        if(tictackto[0][k] != tictackto[0][k] || tictackto[0][k] != tictackto[0][k]) {
+                        if(tictackto[0][k] != tictackto[1][k] || tictackto[0][k] != tictackto[2][k]) {
                           cnt++;
                         }
                     }
