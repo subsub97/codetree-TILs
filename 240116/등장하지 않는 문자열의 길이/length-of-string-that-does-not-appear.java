@@ -16,7 +16,7 @@ public class Main {
                 // 어디서 부터 시작해서 볼건지
                 String curWord = string.substring(j,j+i);
 
-                for (int k = j+i; k <= n-i ; k++) {
+                for (int k = j+1; k <= n-i ; k++) {
                     String compareWord = string.substring(k,k+i);
                     if(curWord.equals(compareWord)){
                         check = false;
