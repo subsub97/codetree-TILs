@@ -20,7 +20,7 @@ public class Main {
             for (int j = 0; j <= bCnt; j++) {
                 int curSum = (a * i) + (b * j);
 
-                if(curSum < c)
+                if(curSum <= c)
                     ans = Math.max(ans,curSum);
             }
         }
