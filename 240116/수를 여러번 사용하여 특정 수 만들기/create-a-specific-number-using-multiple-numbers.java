@@ -8,27 +8,24 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int[] numbers = new int[2];
-
-        numbers[0] = Integer.parseInt(st.nextToken());
-        numbers[1] = Integer.parseInt(st.nextToken());
-
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
         int c = Integer.parseInt(st.nextToken());
 
-        findMaxSum(numbers,c);
+        int aCnt = c / a;
+        int bCnt = c / b;
+        int ans = 0;
+
+        for (int i = 0; i <= a ; i++) {
+            for (int j = 0; j <= b; j++) {
+                int curSum = (a * i) + (b * j);
+                if(curSum < c)
+                    ans = Math.max(ans,curSum);
+            }
+        }
+
         System.out.println(ans);
     }
 
-    public static void findMaxSum(int[] numbers,int c) {
-        if(sum > c) {
-            return;
-        }
 
-        for (int i = 0; i < 2; i++) {
-            sum += numbers[i];
-            findMaxSum(numbers,c);
-            sum -= numbers[i];
-            ans = Math.max(ans,sum);
-        }
-    }
 }
