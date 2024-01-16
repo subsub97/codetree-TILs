@@ -16,7 +16,7 @@ public class Main {
             bombs[i] = Integer.parseInt(br.readLine().trim());
             maxNumber = Math.max(bombs[i], maxNumber);
         }
-
+        
         int maxCnt = 2;
         int ans = 0;
         for (int i = 1; i <= maxNumber ; i++) {
@@ -25,7 +25,7 @@ public class Main {
             int cnt = 1;
             for (int j = 0; j < n; j++) {
                 if(bombs[j] == i) {
-                    for (int l = 1; l < k; l++) {
+                    for (int l = 1; l <= k; l++) {
                         if(j + l < n){
                             if(bombs[j+l] == i && !explosion[j+l]) {
                                 explosion[l] = true;
