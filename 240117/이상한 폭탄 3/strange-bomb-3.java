@@ -17,7 +17,7 @@ public class Main {
             maxNumber = Math.max(bombs[i], maxNumber);
         }
 
-        int maxCnt = 1;
+        int maxCnt = 2;
         int ans = 0;
         for (int i = 1; i <= maxNumber ; i++) {
             // i번 폭탄이 몇개 터지는지 확인
