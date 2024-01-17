@@ -14,11 +14,11 @@ public class Main {
         for (int i = 0; i < 4; i++) {
             x[i] = Integer.parseInt(st.nextToken());
         }
-        if((x[0] <= x[2] && x[2] <= x[1]) || (x[0] <= x[3] && x[3] <= x[1])){
-            System.out.println(correct);
+        if(x[3] < x[0] || x[1] < x[2]){
+            System.out.println(notCorrect);
         }
         else {
-            System.out.println(notCorrect);
+            System.out.println(correct);
         }
 
     }
