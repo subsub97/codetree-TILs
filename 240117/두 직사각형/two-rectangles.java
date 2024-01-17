@@ -17,7 +17,7 @@ public class Main {
             square1[i] = Integer.parseInt(st.nextToken());
             square2[i] = Integer.parseInt(st1.nextToken());
         }
-        if((square1[1] < square2[0]) || square2[2] < square1[0] || square1[3] < square2[1] || square2[3] < square1[1]){
+        if((square1[2] < square2[0]) || square2[2] < square1[0] || square1[3] < square2[1] || square2[3] < square1[1]){
             // 겹치지 않는 경우
             System.out.println(notCorrect);
         }
