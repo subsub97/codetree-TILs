@@ -4,6 +4,9 @@ import java.util.StringTokenizer;
 public class Main {
     public static int[] line = new int[101];
     public static final int MAX_N = 100;
+    public static int maxX1;
+    public static int minX2 = MAX_N;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -15,20 +18,12 @@ public class Main {
             StringTokenizer st = new StringTokenizer(br.readLine());
             start[i] = Integer.parseInt(st.nextToken());
             end[i] = Integer.parseInt(st.nextToken());
+
+            maxX1 = Math.max(maxX1, start[i]);
+            minX2 = Math.min(minX2, end[i]);
         }
 
-        boolean allOverlap = false;
-        // 모든 선분 그리기
-        for (int i = 0; i < n; i++) {
-            for (int j = start[i]; j <= end[i]; j++) {
-                line[j] += 1;
-                if(line[j] == n) {
-                    allOverlap = true;
-                }
-            }
-        }
-
-        if(allOverlap) {
+        if(minX2 >= maxX1) {
             System.out.println("Yes");
         } else{
             System.out.println("No");
