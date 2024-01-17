@@ -1,5 +1,3 @@
-package codeTree;
-
 import com.sun.security.jgss.GSSUtil;
 import java.io.*;
 import java.util.Arrays;
