@@ -10,7 +10,7 @@ public class Main {
         int[] x = new int[4];
 
         String correct = "interesting";
-        String notCorrect = "noninterectiog";
+        String notCorrect = "nonintersecting";
         for (int i = 0; i < 4; i++) {
             x[i] = Integer.parseInt(st.nextToken());
         }
