@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -12,7 +11,7 @@ public class Main {
         int idx = 0;
         boolean check = false;
         int preLocation = 0;
-        int maxDistance = 0 ;
+
 
         for (int i = 0; i < n; i++) {
 
@@ -22,12 +21,19 @@ public class Main {
                 }
                 else{
                     seatDistance[idx++] = i - preLocation;
-                    maxDistance = Math.max(i-preLocation, maxDistance);
                     preLocation = i;
 
                 }
             }
         }
-        System.out.println(maxDistance/2);
+        int maxDistance = 0;
+        int minDistance = 100000000;
+
+        for (int i = 0; i < idx; i++) {
+            maxDistance = Math.max(seatDistance[i], maxDistance);
+            minDistance = Math.min(seatDistance[i], minDistance);
+        }
+
+        System.out.println(Math.min(minDistance,maxDistance/2));
     }
 }
