@@ -14,7 +14,7 @@ public class Main {
         if(b-a == 1 && c-b == 1) {
             System.out.println(0);
         }
-        if(Math.abs(b - a) == 2 || Math.abs(c-b) == 2){
+        else if(Math.abs(b - a) == 2 || Math.abs(c-b) == 2){
             System.out.println(1);
         }
         else{
