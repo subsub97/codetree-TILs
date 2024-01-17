@@ -19,7 +19,7 @@ public class Main {
         }
 
 
-        for (int i = maxNumber; i <= MAX_N; i++) {
+        for (int i = maxNumber; i <= 10000; i++) {
             //답을 i라고 가정하고 문제 풀이
             int[] segement = new int[m];
             int index = 0;
