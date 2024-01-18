@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 
@@ -17,16 +16,16 @@ public class Main {
             if(Integer.parseInt(st.nextToken()) % 2 == 0) even++;
             else odd++;
         }
-        int ans = 0;
-
+        
         if (odd == 0) {
             System.out.println(1);
         }
         else{
             if(odd > even){
-                int gap = odd - even;
-                even += gap/2;
-                odd -= (gap/2) * 2;
+                while(odd > even) {
+                    odd-= 2;
+                    even++;
+                }
             }
 
             if(odd < even){
@@ -37,4 +36,5 @@ public class Main {
             }
         }
     }
+
 }
