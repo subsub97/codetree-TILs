@@ -9,7 +9,7 @@ public class Main {
 
         String a = "";
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < n; i++) {
             a += st.nextToken();
         }
 
@@ -17,7 +17,7 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             char findAlpa = (char) (65 + i);
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < n; j++) {
                 if(a.charAt(j) == findAlpa && j != i) {
                     minCount += j - i;
                     a =a.substring(0,i) +a.substring(j,j+1) +a.substring(i,j)+a.substring(j+1);
