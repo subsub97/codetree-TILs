@@ -9,6 +9,7 @@ public class Main {
 
         int[] devA = new int[n];
         int[] devB = new int[n];
+
         String[][] gameRule = {{"가위", "바위", "보"},{"가위","보","바위"},
                 {"바위","가위","보"}, {"바위","보","가위"}, {"보","바위","가위"},{"보","가위","바위"}};
 
@@ -20,7 +21,7 @@ public class Main {
 
         int ans = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 6; i++) {
             int cnt = 0;
             for (int j = 0; j < n; j++) {
                 String a = gameRule[i][devA[j]-1];
