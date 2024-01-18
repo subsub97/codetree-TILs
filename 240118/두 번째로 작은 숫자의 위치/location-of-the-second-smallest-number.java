@@ -23,13 +23,20 @@ public class Main {
         });
 
         int minValue = numbers[0].value;
+
         int ans = -1;
-        for (number number : numbers) {
-            if(minValue < number.value){
-                ans = number.index;
+        int secondMin = 0;
+        for (int i = 0; i < n; i++) {
+            if(minValue < numbers[i].value){
+                ans = numbers[i].index;
+                if(i < n-1 && numbers[i+1].value == numbers[i].value){
+                    ans = -1;
+                }
                 break;
             }
         }
+
+
         System.out.println(ans);
 
     }
