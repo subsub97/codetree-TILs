@@ -21,11 +21,10 @@ public class Main {
 
         int[] sum = new int[n];
         int idx = 0;
-        int ans = 0;
+        int ans = 10000000000;
         for (int i = 0; i < n; i++) {
-            sum[i] = numbers[idx+1] - numbers[idx];
-            idx+=2;
-            ans = Math.max(sum[i], ans);
+            sum[i] = numbers[i+n] - numbers[i];
+            ans = Math.min(sum[i], ans);
         }
 
         System.out.println(ans);
