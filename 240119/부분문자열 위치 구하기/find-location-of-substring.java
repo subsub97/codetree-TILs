@@ -8,7 +8,7 @@ public class Main {
 
         int ans = -1;
 
-        for (int i = 0; i < st.length()-partitionWord.length()-1; i++) {
+        for (int i = 0; i < st.length(); i++) {
             if(st.substring(i,i+partitionWord.length()).equals(partitionWord)) {
                 ans = i;
                 break;
