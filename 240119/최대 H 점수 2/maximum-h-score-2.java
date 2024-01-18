@@ -17,7 +17,6 @@ public class Main {
             numbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(numbers);
         int a= 0;
         for (int i = 0; i < n; i++) {
             if(numbers[i] >=50){
