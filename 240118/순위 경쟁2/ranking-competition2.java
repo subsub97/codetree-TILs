@@ -6,7 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine().trim());
 
-        char[] hallOfFame = new char[1];
+        char[] hallOfFame = {'C'};
 
         int a = 0;
         int b = 0;
