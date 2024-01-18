@@ -32,7 +32,8 @@ public class Main {
             for(int j = n-1; j >= 0; j--){
                 if(numbers[j] + 1 >= i){
                     if(numbers[j] < i){
-                        curL -=  1;
+                        if(curL > 0) curL -=  1;
+                        else continue;
                     }
                     cnt++;
                     if(cnt >= i){
