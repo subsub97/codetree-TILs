@@ -18,15 +18,21 @@ public class Main {
         }
 
         Arrays.sort(numbers);
-        
+        int a= 0;
+        for (int i = 0; i < n; i++) {
+            if(numbers[i] >=50){
+                a++;
+            }
+        }
+
         for(int i = 1; i <= 100; i++) {
             int cnt = 0;
             int curL = l;
 
             for(int j = n-1; j >= 0; j--){
-                if(numbers[j] + curL >= i){
+                if(numbers[j] + 1 >= i){
                     if(numbers[j] < i){
-                        curL -=  (i - numbers[j]);
+                        curL -=  1;
                     }
                     cnt++;
                     if(cnt >= i){
