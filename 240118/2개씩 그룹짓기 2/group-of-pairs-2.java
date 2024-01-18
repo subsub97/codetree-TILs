@@ -21,7 +21,8 @@ public class Main {
 
         int[] sum = new int[n];
         int idx = 0;
-        int ans = 100000000;
+        int ans = Integer.MAX_VALUE;
+        
         for (int i = 0; i < n; i++) {
             sum[i] = numbers[i+n] - numbers[i];
             ans = Math.min(sum[i], ans);
