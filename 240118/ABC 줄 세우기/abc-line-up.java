@@ -7,22 +7,21 @@ public class Main {
         int n = Integer.parseInt(br.readLine().trim());
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        char[] alpas = new char[4];
+        String a = "";
 
         for (int i = 0; i < 4; i++) {
-            alpas[i] = st.nextToken().charAt(0);
+            a += st.nextToken();
         }
+
 
         int minCount = 0;
 
         for (int i = 0; i < 4; i++) {
             char findAlpa = (char) (65 + i);
             for (int j = 0; j < 4; j++) {
-                if(alpas[j] == findAlpa) {
+                if(a.charAt(j) == findAlpa) {
                     minCount += j - i;
-                    char temp = alpas[i];
-                    alpas[i] = alpas[j];
-                    alpas[j] = temp;
+                    a =a.substring(0,i) + a.substring(j,j+1) + a.substring(i+1);
                 }
             }
         }
