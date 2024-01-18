@@ -9,10 +9,13 @@ public class Main {
         int ans = -1;
 
         for (int i = 0; i < st.length(); i++) {
-            if(st.substring(i,i+partitionWord.length()).equals(partitionWord)) {
+            if(i + partitionWord.length() <= st.length()){
+                if(st.substring(i,i+partitionWord.length()).equals(partitionWord)) {
                 ans = i;
                 break;
             }
+            }
+
         }
 
         System.out.println(ans);
