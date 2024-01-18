@@ -18,7 +18,7 @@ public class Main {
             numbers[i] = Integer.parseInt(st.nextToken());
         }
 
-        int maxNumber = 0;
+        int maxNumber = Integer.MIN_VALUE;
 
         for (int i = 0; i < n; i++) {
             for (int j = i+1; j < n; j++) {
