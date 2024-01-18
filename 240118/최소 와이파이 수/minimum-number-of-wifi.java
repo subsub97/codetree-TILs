@@ -1,5 +1,4 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 
@@ -12,8 +11,25 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        System.out.println(n/((2*m)+1));
+        int[] town = new int[n];
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            town[i] = Integer.parseInt(st.nextToken());
+        }
 
+        int ans = 0;
+        int idx = 0;
+        while(idx < n) {
+            if(town[idx] == 1) {
+                ans++;
+                idx += (2*m) +1;
+            }
+            else{
+                idx++;
+            }
+        }
+
+        System.out.println(ans);
 
     }
 
