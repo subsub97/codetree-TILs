@@ -15,7 +15,7 @@ public class Main {
 
         int minCount = 0;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < n; i++) {
             char findAlpa = (char) (65 + i);
             for (int j = 0; j < 4; j++) {
                 if(a.charAt(j) == findAlpa && j != i) {
