@@ -14,6 +14,9 @@ public class Main {
                 ans = i;
                 break;
             }
+            else{
+                break;
+            }
             }
 
         }
