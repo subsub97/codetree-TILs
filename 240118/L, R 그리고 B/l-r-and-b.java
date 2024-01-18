@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int rowL = 0,colL = 0, rowB= 0,colB = 0;
+        int rowL = 0,colL = 0, rowB= 0,colB = 0,rowR=0,colR=0;
 
         for (int i = 0; i < 10; i++) {
             String st = br.readLine();
@@ -21,10 +21,22 @@ public class Main {
                     rowB = i;
                     colB = j;
                 }
+                else if(grid[i][j] == 'R'){
+                    rowR = i;
+                    colR = j;
+                }
             }
         }
-
-        System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)-1));
+        if(rowB == rowL && rowB == rowR){
+            System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)+1));    
+        }
+        else if(colB == colL && colB == colR){
+            System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)+1));    
+        }
+        else{
+            System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)-1));
+        }
+        
     }
 
 
