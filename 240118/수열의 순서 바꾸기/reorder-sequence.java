@@ -16,19 +16,15 @@ public class Main {
         }
 
         int cost = 0;
-
-        for (int i = 0; i < n ; i++) {
-            boolean change = false;
-            for (int j = i; j < n-1; j++) {
-                if(numbers[j] > numbers[j+1]){
-                    change = true;
-                    break;
-                }
+        int cnt = 1;
+        for(int i = n-1; i > 0; i--) {
+            if(numbers[i] > numbers[i-1]){
+                cnt++;
+                continue;
             }
-            if(change) cost++;
+            break;
         }
-
-        System.out.println(cost);
+        System.out.println(n - cnt);
 
     }
 }
