@@ -23,7 +23,7 @@ public class Main {
     }
 
     public static void findSeat(String seatInfo) {
-        int preDiff = 100;
+        int preDiff = 1001;
 
         for (int i = 0; i < seatInfo.length(); i++) {
             if(seatInfo.charAt(i) == '1') {
