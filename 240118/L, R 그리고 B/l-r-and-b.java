@@ -27,10 +27,10 @@ public class Main {
                 }
             }
         }
-        if(rowB == rowL && rowB == rowR){
+        if((rowB == rowL && rowB == rowR) && ((colB > colR && colR > colL) || (colB<colR && colL > colR))){
             System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)+1));    
         }
-        else if(colB == colL && colB == colR){
+        else if((colB == colL && colB == colR) && ((rowB > rowR && rowR > rowL) || (rowB<rowR && rowL > rowR)) ){
             System.out.println((Math.abs(rowB - rowL) + Math.abs(colB-colL)+1));    
         }
         else{
