@@ -35,6 +35,11 @@ public class Main {
             char curDeveloper = (char)('A'+i);
             for (int j = 0; j < m; j++) {
                 if(curDeveloper == developers[j].name && p-1 <= j){
+                    if(developers[j].info == 0 && p-1 == j){
+                        for (int k = 0; k < n; k++) {
+                            unreaders[k] = 3;
+                        }
+                    }
                     unreaders[developers[j].name - 'A'] = 3;
                 }
                 if (pre < developers[j].info) {
