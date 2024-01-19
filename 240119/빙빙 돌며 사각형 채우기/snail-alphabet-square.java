@@ -41,7 +41,7 @@ public class Main {
                 error =0;
                 alpa = (char) ((int) alpa + 1);
                 if((int) alpa > 90){
-                    alpa = (char)(90-26);
+                    alpa = (char)(90-25);
                 }
             }
 
