@@ -19,7 +19,7 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int p = Integer.parseInt(st.nextToken());
 
-        Developer[] developers = new Developer[n];
+        Developer[] developers = new Developer[m];
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
