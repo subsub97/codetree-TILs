@@ -49,6 +49,12 @@ public class Main {
                     if(unreaders[developers[j].name - 'A'] == 3)  continue;
                     unreaders[developers[j].name - 'A'] = 1;
                 }
+                if(p-1 == j){
+                    for (int k = 0; k < n; k++) {
+                        if(unreaders[k] == 1)
+                            unreaders[k] = 3;
+                    }
+                }
                 pre = developers[j].info;
             }
         }
@@ -56,7 +62,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             if(unreaders[i] == 0) {
                 char alpa = (char)(int)('A'+i);
-                System.out.print(alpa +" ");
+                System.out.print(alpa + " ");
             }
         }
     }
