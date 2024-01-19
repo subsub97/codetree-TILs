@@ -31,7 +31,7 @@ public class Main {
             sickTimes[i] = Integer.parseInt(st.nextToken());
         }
 
-        boolean[] rottenCheeze = new boolean[m+1];
+        int[] rottenCheeze = new int[m+1];
 
         for (int i = 0; i < s; i++) {
             // 환자와 발생시간 고정하여 찾기
@@ -39,9 +39,15 @@ public class Main {
             int sickTime = sickTimes[i];
             for (int j = 0; j < d; j++) {
                 if(patient == people[j] && times[j] < sickTime) {
-                    rottenCheeze[cheezes[j]] = true;
+                    if(rottenCheeze[cheezes[j]] == 3) continue;
+                    rottenCheeze[cheezes[j]] = 1;
                 }else if(patient == people[j] && sickTime <= times[j]){
-                    rottenCheeze[cheezes[j]] = false;
+                    rottenCheeze[cheezes[j]] = 3;
+                }
+            }
+            for (int j = 1; j <= m; j++) {
+                if(rottenCheeze[j] == 0){
+                    rottenCheeze[j] = 3;
                 }
             }
         }
@@ -50,7 +56,7 @@ public class Main {
 
         for (int i = 1; i <= n; i++) {
             for (int j = 0; j < d; j++) {
-                if(i == people[j] && rottenCheeze[cheezes[j]]){
+                if(i == people[j] && rottenCheeze[cheezes[j]] == 1){
                     maxPatients++;
                     break;
                 }
