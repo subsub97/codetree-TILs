@@ -37,8 +37,10 @@ public class Main {
             // 환자와 발생시간 고정하여 찾기
             int patient = patients[i];
             int sickTime = sickTimes[i];
+            boolean[] eatCheeze = new boolean[m+1];
             for (int j = 0; j < d; j++) {
                 if(patient == people[j] && times[j] < sickTime) {
+                    eatCheeze[cheezes[j]] = true;
                     if(rottenCheeze[cheezes[j]] == 3) continue;
                     rottenCheeze[cheezes[j]] = 1;
                 }else if(patient == people[j] && sickTime <= times[j]){
@@ -46,7 +48,7 @@ public class Main {
                 }
             }
             for (int j = 1; j <= m; j++) {
-                if(rottenCheeze[j] == 0){
+                if(!eatCheeze[j]){
                     rottenCheeze[j] = 3;
                 }
             }
