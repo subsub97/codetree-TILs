@@ -13,10 +13,10 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        char[] code = br.readLine().toCharArray();
+        String code = br.readLine();
 
-        for(int i = 0; i < code.length;i++) {
-            l.add(code[i]);
+        for(int i = 0; i < code.length();i++) {
+            l.add(code.charAt(i));
         }
         ListIterator<Character> it = l.listIterator(l.size());
 
