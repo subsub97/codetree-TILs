@@ -20,7 +20,7 @@ public class Main {
         }
         ListIterator<Character> it = l.listIterator(l.size());
 
-        for(int i = 0; i < n; i++) {
+        for(int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
             char cmd = st.nextToken().charAt(0);
             if('L' == cmd) {
