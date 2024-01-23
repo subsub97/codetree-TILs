@@ -2,6 +2,8 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+    public static int k;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine().trim());
@@ -13,8 +15,16 @@ public class Main {
 
         for(int i =0; i < n; i++) {
             numbers[i] = Integer.parseInt(st.nextToken());
-            Math.max(maxNum,numbers[i]);
+            maxNum = Math.max(maxNum,numbers[i]);
         }
+
+        int cnt = 1;
+        while(true) {
+            if(maxNum < 10) break;
+            maxNum /= 10;
+            cnt++;
+        }
+        k = cnt;
 
         radixsort(numbers,n);
 
@@ -24,30 +34,28 @@ public class Main {
     }
 
     static void radixsort(int arr[], int n) {
-        int m = Arrays.stream(arr).max().getAsInt();
- 
-        for (int exp = 1; m / exp > 0; exp *= 10)
-            countSort(arr, n, exp);
-    }
- 
-    static void countSort(int arr[], int n, int exp) {
-        int output[] = new int[n]; 
-        int i;
-        int count[] = new int[10];
-        Arrays.fill(count, 0);
- 
-        for (i = 0; i < n; i++)
-            count[(arr[i] / exp) % 10]++;
- 
-        for (i = 1; i < 10; i++)
-            count[i] += count[i - 1];
- 
-        for (i = n - 1; i >= 0; i--) {
-            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
-            count[(arr[i] / exp) % 10]--;
+        int p = 1;
+
+        for(int pos = 0; pos < k; pos++) {
+            ArrayList<Integer>[] arrNew = new ArrayList[10];
+            for(int i =0; i <10; i++) {
+                arrNew[i] = new ArrayList<>();
+            }
+
+            for(int i =0; i < n; i++) {
+                int digit = (arr[i]/p) % 10;
+                arrNew[digit].add(arr[i]);
+            }
+
+            int idx = 0;
+            for(int i = 0; i < 10; i++) {
+                for(int j = 0; j < arrNew[i].size(); j++) {
+                    arr[idx++] = arrNew[i].get(j);
+                }
+            }
+            p *= 10;
+
         }
- 
-        for (i = 0; i < n; i++)
-            arr[i] = output[i];
     }
+
 }
