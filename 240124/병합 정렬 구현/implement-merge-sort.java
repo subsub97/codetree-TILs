@@ -6,6 +6,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         int n = Integer.parseInt(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -20,8 +22,9 @@ public class Main {
         mergeSort(arr,0,n-1);
 
         for (int i : arr) {
-            System.out.print(i + " ");
+            bw.write(i + " ");
         }
+        bw.close();
 
     }
 
