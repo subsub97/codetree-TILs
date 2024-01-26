@@ -19,6 +19,10 @@ public class Main {
                 if(s.size() > 0 && s.peek().equals("(")) {
                     s.pop();
                 }
+                else{
+                    s.push(par.substring(i,i+1));
+                }
+                
             }
         }
 
