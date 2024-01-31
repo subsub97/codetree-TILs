@@ -35,13 +35,15 @@ public class Main {
                     
                     for(int r = 0; r < n; r++) {
                         for(int c = 0; c < n; c++) {
-                            if(grid[i][j] == 1 && Math.abs(i - r) + Math.abs(j -c) <= k){
+                            if(grid[r][c] == 1 && Math.abs(i - r) + Math.abs(j -c) <= k){
                                 //마름모 내부라면
                                 cnt++;
                             }
                         }
                     }
-                if(cost <= m * cnt) maxCnt = Math.max(cnt,maxCnt);
+                if(cost <= m * cnt) {
+                    maxCnt = Math.max(cnt,maxCnt);
+                }
                 }
             }
         }
