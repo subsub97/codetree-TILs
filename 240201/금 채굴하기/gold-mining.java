@@ -27,7 +27,7 @@ public class Main {
         int maxCnt = 0;
         int preMaxCnt = 0;
         int ans = 0;
-        for(int k = 0; k < n+10; k++) { //현재 마름모 크기
+        for(int k = 0; k < n + 10; k++) { //현재 마름모 크기
             int cost = k * k + (k+1) * (k+1); //현재 마름모 격자의 비용
             for(int i = 0; i < n; i++) {
                 for(int j = 0; j < n; j++) {
@@ -39,7 +39,8 @@ public class Main {
             }
             if(cost > maxCnt * m) {
                 // 손해가 발생하는 경우
-                break;
+                continue;
+
             }
             preMaxCnt = maxCnt;
         }
@@ -55,8 +56,8 @@ public class Main {
 
         if(grid[row][col] == 1) cnt++;
 
-        int[] drs = {1,-1,0,0};
-        int[] dcs = {0,0,-1,1};
+        int[] drs = {1,0,-1,0};
+        int[] dcs = {0,1,0,-1};
 
         for(int i = 0; i < 4; i++) {
             //현재 위치에서 상하좌우로 움직이기.
