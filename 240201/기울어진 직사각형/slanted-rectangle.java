@@ -21,10 +21,12 @@ public class Main {
         int ans = 0;
         for(int i = 1; i < n; i++) {
             for(int j = 1; j < n-1; j++) {
+                for (int k = 1; k < n; k++) {
                     if(isStartSpot(i,j)) {
-                        currSum = sumSquare(i,j);
+                        currSum = sumSquare(i,j,k);
                         ans = Math.max(ans, currSum);
                     }
+                }
                 }
             }
         System.out.print(ans);
@@ -35,11 +37,7 @@ public class Main {
         return row > 1 && row < n && col > 0 && col < n-1;
     }
 
-    public static boolean inRange(int row, int col) {
-        return row >= 0 && row < n && col >= 0 && col < n;
-    }
-
-    public static int sumSquare(int row, int col) {
+    public static int sumSquare(int row, int col,int limit) {
         // 기울어진 사각형 모양의 숫자들을 합산하는 함수
         int[] drs = {0,-1,-1,1,1};
         int[] dcs = {0,1,-1,-1,1};
@@ -49,8 +47,8 @@ public class Main {
         int currRow = row;
         int currCol = col;
 
-        while(dirIdx != 4 || (row != currRow && col != currCol)) {
-            dirIdx = selectDir(dirIdx,currRow,currCol,row,col);
+        while(dirIdx != 4 || (row != currRow || col != currCol)) {
+            dirIdx = selectDir(dirIdx,currRow,currCol,row,col,limit);
             currRow = currRow + drs[dirIdx];
             currCol = currCol + dcs[dirIdx];
 
@@ -61,19 +59,19 @@ public class Main {
         return sumNumber;
     }
 
-    public static int selectDir(int dir, int row, int col,int startRow,int startCol) {
+    public static int selectDir(int dir, int row, int col,int startRow,int startCol,int limit) {
         if(dir == 0) {
             return 1;
         }
         if(dir == 1) {
-            if(row == 1 || col == n-1) return 2;
+            if(row == 1 || col == n-1 || limit == startRow - row) return 2;
         }
         if(dir == 2) {
-            if(row == 0 || col == 1 || col == startRow)
+            if(row == 0 || col == 1 || col + startCol == startRow - row)
                 return 3;
         }
         if(dir == 3) {
-            if(row == startRow -1 || col == 0)
+            if(row == startRow -1 || col == 0 || startRow - row == startCol - col)
                 return 4;
         }
         return dir;
