@@ -8,7 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int n = Integer.parseInt(br.readLine().trim());
-        int[] dp = new int[n+1];
+        int[] dp = new int[20];
 
         dp[0] = 1;
         dp[1] = 1;
