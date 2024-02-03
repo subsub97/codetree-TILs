@@ -20,8 +20,12 @@ public class Main {
                 grid[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        System.out.println(findMaxSquare(n,m));
+        int ans = findMaxSquare(n, m);
+        if(ans == 0){
+            System.out.println(-1);
+        }
+        else
+            System.out.println(findMaxSquare(n,m));
 
     }
 
