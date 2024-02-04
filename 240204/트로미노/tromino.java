@@ -28,7 +28,7 @@ public class Main {
         }
 
         int ans = 0;
-
+        visited = new boolean[n][m];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 ans = Math.max(ans,findMaxValue(i, j,1,0));
