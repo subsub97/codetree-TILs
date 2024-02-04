@@ -35,7 +35,7 @@ public class Main {
         int ans = 0;
 
         for (Cell cell : cells) {
-            ans = checkCnt(cell.x, cell.y);
+            ans = Math.max(ans,checkCnt(cell.x, cell.y));
         }
 
         System.out.println(ans);
