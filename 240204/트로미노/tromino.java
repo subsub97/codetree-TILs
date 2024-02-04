@@ -68,7 +68,7 @@ public class Main {
     }
 
     public static boolean inRange(int row, int col) {
-        return row >= 0 && row < n && col >= 0 && col < n;
+        return row >= 0 && row < n && col >= 0 && col < m;
     }
 
     public static boolean canGo(int row, int col) {
