@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Deque;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -34,15 +35,17 @@ public class Main {
             q1.addFirst(q2.pollLast());
         }
 
+        Iterator<Integer> itr1 = q1.iterator();
+        Iterator<Integer> itr2 = q2.iterator();
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        for(Integer num:q1) {
-            bw.append(num +" ");
+        while(itr1.hasNext()){
+            bw.append(itr1.next() +" ");
         }
 
         bw.append("\n");
-        for(Integer num:q2) {
-            bw.append(num +" ");
+        while(itr2.hasNext()){
+            bw.append(itr2.next() +" ");
         }
 
         bw.close();
