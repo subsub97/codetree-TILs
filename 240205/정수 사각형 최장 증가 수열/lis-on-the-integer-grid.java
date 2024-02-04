@@ -1,83 +1,68 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
+    public static final int DIR_NUM = 4;
+    public static final int MAX_N = 500;
+
+    // 변수 선언
     public static int n;
-    public static int[][] grid;
-    public static int[][] dp;
-    public static Cell[] cells;
+    public static int[][] grid = new int[MAX_N][MAX_N];
+    public static int[][] dp = new int[MAX_N][MAX_N];
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static boolean inRange(int x, int y) {
+        return 0 <= x && x < n && 0 <= y && y < n;
+    }
 
-        n = Integer.parseInt(br.readLine().trim());
+    // (x, y)에서 출발하여 조건을 만족하며
+    // 도달할 수 있는 칸의 수 중
+    // 최대 칸의 수를 구합니다.
+    public static int findMax(int x, int y) {
+        // 이미 계산해본적이 있다면
+        // 그 값을 바로 반환합니다.
+        if(dp[x][y] != -1)
+            return dp[x][y];
 
-        grid = new int[n][n];
-        dp = new int[n][n];
-        cells = new Cell[n*n];
-        int idx = 0;
-        for (int i = 0; i < n; i++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < n; j++) {
-                int num = Integer.parseInt(st.nextToken());
-                cells[idx] = new Cell(num, j, i);
-                grid[i][j] = num;
-                idx++;
-                dp[i][j] = 1;
-            }
+        // 기본값은 자기자신이 됩니다.
+        int best = 1;
+
+        // 정수값이 작은 칸부터 순서대로 보며
+        // 4방향에 대해 최적의 칸 수를 계산합니다.
+        int[] dx = new int[]{-1, 1,  0, 0};
+        int[] dy = new int[]{ 0, 0, -1, 1};
+
+        for(int j = 0; j < DIR_NUM; j++) {
+            int nx = x + dx[j], ny = y + dy[j];
+            if(inRange(nx, ny) && grid[nx][ny] > grid[x][y])
+                best = Math.max(best, findMax(nx, ny) + 1);
         }
 
-        Arrays.sort(cells);
+        return dp[x][y] = best;
+    }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // 입력
+        n = sc.nextInt();
+
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                grid[i][j] = sc.nextInt();
+
+        // 메모이제이션을 위해
+        // 전부 초기값을 -1로 셋팅해줍니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                dp[i][j] = -1;
+
+        // 각 칸에 시작했을 떄
+        // 최대로 이동할 수 있는 칸의 수 중
+        // 최댓값을 갱신합니다.
         int ans = 0;
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                ans = Math.max(ans, findMax(i, j));
 
-        for (Cell cell : cells) {
-            ans = Math.max(ans,checkCnt(cell.x, cell.y));
-        }
-
-        System.out.println(ans);
-
-    }
-
-    public static int checkCnt(int x, int y) {
-        int[] dxs = {1, -1, 0, 0};
-        int[] dys = {0, 0, 1, -1};
-        int dir = 0;
-
-        for (int i = 0; i < 4; i++) {
-            int nextX = x + dxs[dir];
-            int nextY = y + dys[dir];
-
-            if(inRange(nextY,nextX)) {
-                if(grid[y][x] > grid[nextY][nextX]) {
-                    dp[y][x] = Math.max(dp[y][x],dp[nextY][nextX] + 1);
-                }
-            }
-            dir++;
-        }
-
-        return dp[y][x];
-    }
-
-    public static boolean inRange(int row,int col) {
-        return row >= 0 && row < n && col >= 0 && col < n;
-    }
-
-    public static class Cell implements Comparable<Cell> {
-        int num,x,y;
-
-        Cell(int num, int x, int y) {
-            this.num = num;
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public int compareTo(Cell c) {
-            return this.num - c.num;
-        }
+        System.out.print(ans);
     }
 }
