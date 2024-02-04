@@ -1,84 +1,76 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Main {
-    public static final int MAX_DIR = 3;
-    public static int n;
-    public static int m;
-    public static int[][] grid;
-    public static boolean[][] visited;
-
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-
-        grid = new int[n][m];
-
-        for (int i = 0; i < n; i++) {
-            st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < m; j++) {
-                grid[i][j] = Integer.parseInt(st.nextToken());
-            }
+    public static final int MAX_NUM = 200;
+    
+    public static int n, m;
+    public static int[][] grid = new int[MAX_NUM][MAX_NUM];
+    
+    // 가능한 모든 모양을 전부 적어줍니다.
+    public static int[][][] shapes = new int[][][]{
+        {{1, 1, 0},
+        {1, 0, 0},
+        {0, 0, 0}},
+    
+        {{1, 1, 0},
+        {0, 1, 0},
+        {0, 0, 0}},
+    
+        {{1, 0, 0},
+        {1, 1, 0},
+        {0, 0, 0}},
+    
+        {{0, 1, 0},
+        {1, 1, 0},
+        {0, 0, 0}},
+    
+        {{1, 1, 1},
+        {0, 0, 0},
+        {0, 0, 0}},
+    
+        {{1, 0, 0},
+        {1, 0, 0},
+        {1, 0, 0}},
+    };
+    
+    // 주어진 위치에 대하여 가능한 모든 모양을 탐색하며 최대 합을 반환합니다.
+    public static int getMaxSum(int x, int y) {
+        int maxSum = 0;
+        
+        for(int i = 0; i < 6; i++) {
+            boolean isPossible = true;
+            int sum = 0;
+            for(int dx = 0; dx < 3; dx++)
+                for(int dy = 0; dy < 3; dy++) {
+                    if(shapes[i][dx][dy] == 0) continue;
+                    if(x + dx >= n || y + dy >= m) isPossible = false;
+                    else sum += grid[x + dx][y + dy];
+                }
+    
+            if(isPossible)
+                maxSum = Math.max(maxSum, sum);
         }
+        
+        return maxSum;
+    }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        n = sc.nextInt();
+        m = sc.nextInt();
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                grid[i][j] = sc.nextInt();
+        
         int ans = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                visited = new boolean[n][m];
-                ans = Math.max(ans,findMaxValue(i, j,1,0));
-            }
-        }
-
-        System.out.println(ans);
+        
+        // 격자의 각 위치에 대하여 탐색하여줍니다.
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < m; j++)
+                ans = Math.max(ans, getMaxSum(i, j));
+        
+        System.out.print(ans);
     }
-
-    public static int findMaxValue(int row, int col, int depth,int value) {
-        visited[row][col] = true;
-        if(depth == 3) {
-            visited[row][col] = false;
-            return value += grid[row][col];
-        }
-
-        int[] drs = {1,0,-1};
-        int[] dcs = {0,1,0};
-        int dir = 0;
-
-        int maxValue = 0;
-
-        for (int i = 0; i < MAX_DIR; i++) {
-            int nextRow = row + drs[dir];
-            int nextCol = col + dcs[dir];
-            if(canGo(nextRow,nextCol)) {
-                //갈 수 있는 곳인 경우
-                maxValue = Math.max(findMaxValue(nextRow,nextCol, depth + 1,
-                        value+grid[row][col]),maxValue);
-
-            }
-            dir++;
-        }
-        visited[row][col] = false;
-        return maxValue;
-    }
-
-    public static boolean inRange(int row, int col) {
-        return row >= 0 && row < n && col >= 0 && col < m;
-    }
-
-    public static boolean canGo(int row, int col) {
-        if(!inRange(row,col)) {
-            return false;
-        }
-        if(visited[row][col]) {
-            return false;
-        }
-        return true;
-    }
-
 }
