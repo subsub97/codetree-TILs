@@ -91,9 +91,8 @@ public class Main {
                 idx = (idx + 1) % 2;
             }
             grid[r2][i] = grid[r2][i + 1];
-            if(i == c2 - 1) {
-                grid[r2][i] = temps[idx];
-            }
+            grid[r2][c2 - 1] = temps[idx];
+
 
         }
 
