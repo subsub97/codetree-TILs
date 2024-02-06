@@ -103,9 +103,8 @@ public class Main {
             if(r1 + 1 == r2) {
                 grid[r1][c1] = temps[idx];
             }
-            
-
         }
+        grid[r2-1][c1] = temps[idx];
 
 
 
