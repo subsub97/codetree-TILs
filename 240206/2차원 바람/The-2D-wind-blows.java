@@ -81,8 +81,8 @@ public class Main {
                 idx = (idx + 1) % 2;
             }
             grid[i][c2] = grid[i - 1][c2];
-            grid[r1 + 1][c2] = temps[idx];
         }
+        grid[r1 + 1][c2] = temps[idx];
 
         for (int i = c1; i < c2 ; i++) {
             //r2행인 경우
@@ -91,22 +91,20 @@ public class Main {
                 idx = (idx + 1) % 2;
             }
             grid[r2][i] = grid[r2][i + 1];
-            grid[r2][c2 - 1] = temps[idx];
-
-
         }
+        grid[r2][c2 - 1] = temps[idx];
 
         for (int i = r1; i < r2 ; i++) {
             //c1열인 경우
             if(i == r1) {
-                temps[idx] = grid[r1+1][c1];
                 idx = (idx + 1) % 2;
-                grid[i][c1] = grid[i+1][c1];
             }
             grid[i][c1] = grid[i + 1][c1];
             if(r1 + 1 == r2) {
                 grid[r1][c1] = temps[idx];
             }
+            
+
         }
 
 
