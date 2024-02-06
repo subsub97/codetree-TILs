@@ -24,7 +24,7 @@ public class Main {
         q = Integer.parseInt(st.nextToken());
 
         grid = new int[n][m];
-        temp = new int[n][m];
+
 
         int r1, r2, c1, c2;
         for (int i = 0; i < n ; i++) {
@@ -40,6 +40,7 @@ public class Main {
             c1 = Integer.parseInt(st.nextToken()) - 1;
             r2 = Integer.parseInt(st.nextToken()) - 1;
             c2 = Integer.parseInt(st.nextToken()) - 1;
+            temp = new int[n][m];
 
             blow(r1,c1,r2,c2);
 
@@ -80,12 +81,7 @@ public class Main {
                 idx = (idx + 1) % 2;
             }
             grid[i][c2] = grid[i - 1][c2];
-            if(i == r1 + 1) {
-                grid[i][c2] = temps[idx];
-            }
-            if(r1+1 == r2) {
-                grid[i][c2] = temps[idx];
-            }
+            grid[r1 + 1][c2] = temps[idx];
         }
 
         for (int i = c1; i < c2 ; i++) {
@@ -109,9 +105,6 @@ public class Main {
                 grid[i][c1] = grid[i+1][c1];
             }
             grid[i][c1] = grid[i + 1][c1];
-            if(i == r1 + 1) {
-                grid[i][c1] = temps[idx];
-            }
             if(r1 + 1 == r2) {
                 grid[r1][c1] = temps[idx];
             }
