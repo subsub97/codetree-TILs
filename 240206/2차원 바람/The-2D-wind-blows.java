@@ -69,8 +69,6 @@ public class Main {
             //r1행인 경우
             if(i == c2){
                 temps[idx++] = grid[r1][c2];
-                grid[r1][c2] = grid[r1][i - 1];
-                continue;
             }
             grid[r1][i] = grid[r1][i - 1];
         }
@@ -79,11 +77,13 @@ public class Main {
             //c2열인 경우
             if(i == r2) {
                 temps[idx] = grid[r2][c2];
-                grid[i][c2] = grid[i - 1][c2];
                 idx = (idx + 1) % 2;
             }
             grid[i][c2] = grid[i - 1][c2];
             if(i == r1 + 1) {
+                grid[i][c2] = temps[idx];
+            }
+            if(r1+1 == r2) {
                 grid[i][c2] = temps[idx];
             }
         }
@@ -93,7 +93,6 @@ public class Main {
             if(i == c1) {
                 temps[idx] = grid[r2][c1];
                 idx = (idx + 1) % 2;
-                grid[r2][i] = grid[r2][i + 1];
             }
             grid[r2][i] = grid[r2][i + 1];
             if(i == c2 - 1) {
