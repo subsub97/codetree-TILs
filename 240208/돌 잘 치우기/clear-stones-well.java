@@ -102,14 +102,22 @@ public class Main {
     }
 
     public static void getMaxArea() {
-        removeStone();
+        for (int i = 0; i < removeStones.size(); i++) {
+            Pair p = stones.get(removeStones.get(i));
+            grid[p.row][p.col] = 0;
+        }
+        
         for (int i = 0; i < startIdxs.length; i++) {
             visisted = new boolean[n][n];
             q.add(startIdxs[i]);
             visisted[startIdxs[i].row][startIdxs[i].col] = true;
             ans = Math.max(ans,bfs());
         }
-        restoreStoen();
+
+        for (int i = 0; i < removeStones.size(); i++) {
+            Pair p = stones.get(removeStones.get(i));
+            grid[p.row][p.col] = 1;
+        }
     }
 
     public static class Pair {
