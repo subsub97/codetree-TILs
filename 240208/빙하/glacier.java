@@ -38,7 +38,7 @@ public class Main {
         while (iceBurgCnt > 0) {
             elapsedTime++;
             finalSize = iceBurgCnt;
-
+            visited = new boolean[n][m];
             bfs();
             if(meltQ.size() > 0) {
                 Pair temp = meltQ.peek();
