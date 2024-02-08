@@ -60,23 +60,6 @@ public class Main {
         }
 
     }
-
-    public static void removeStone() {
-        // 돌 치우기
-        for (int i = 0; i < removeStones.size(); i++) {
-            Pair p = stones.get(removeStones.get(i));
-            grid[p.row][p.col] = 0;
-        }
-    }
-
-    public static void restoreStoen() {
-        // 돌 다시 채우기
-        for (int i = 0; i < removeStones.size(); i++) {
-            Pair p = stones.get(removeStones.get(i));
-            grid[p.row][p.col] = 1;
-        }
-    }
-
     public static int bfs() {
         int[] drs = {1, -1, 0, 0};
         int[] dcs = {0, 0, -1, 1};
