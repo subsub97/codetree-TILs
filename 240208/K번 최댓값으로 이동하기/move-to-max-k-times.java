@@ -34,17 +34,14 @@ public class Main {
         Pair p = new Pair(startRow, startCol);
         x = grid[startRow][startCol];
         q.add(p);
-        int ansRow = 0;
-        int ansCol = 0;
+        int ansRow = startRow + 1;
+        int ansCol = startCol + 1;
 
         while(k-- > 0) {
             hasNext = false;
             visited = new boolean[n][n];
             p = bfs(); //갈 수 있는 모든 경로를 탐방
             if(!hasNext) {
-                //갈 곳이 없는 경우
-                ansRow = p.row + 1;
-                ansCol = p.col + 1;
                 break;
             }
             q.add(p);
