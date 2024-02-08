@@ -51,6 +51,8 @@ public class Main {
             int curR = curS.row;
             int curC = curS.col;
 
+            if(visited[curR][curC]) continue;
+
             if(curR == n-1 && curC == m-1) {
                 //목적지에 도달한 경우
                 ans = 1;
