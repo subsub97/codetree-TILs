@@ -23,6 +23,7 @@ public class Main {
 
         startIdxs = new Pair[k];
         grid = new int[n][n];
+        visisted = new boolean[n][n];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -96,7 +97,7 @@ public class Main {
                     visisted[j][k] = false;
                 }
             }
-            
+
             q.add(startIdxs[i]);
             visisted[startIdxs[i].row][startIdxs[i].col] = true;
             ans = Math.max(ans,bfs());
