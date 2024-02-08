@@ -91,7 +91,12 @@ public class Main {
         }
         
         for (int i = 0; i < startIdxs.length; i++) {
-            visisted = new boolean[n][n];
+            for(int j = 0; j < n; j++) {
+                for(int k = 0; k < n; k++) {
+                    visisted[j][k] = false;
+                }
+            }
+            
             q.add(startIdxs[i]);
             visisted[startIdxs[i].row][startIdxs[i].col] = true;
             ans = Math.max(ans,bfs());
