@@ -26,7 +26,8 @@ public class Main {
         }
 
         int ans = 0;
-        dfs(1);
+
+        dfs(0);
 
         for(int i = 0; i < n; i++) {
             if(vistied[i]) {
