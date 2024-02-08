@@ -38,12 +38,7 @@ public class Main {
         while (iceBurgCnt > 0) {
             elapsedTime++;
             finalSize = iceBurgCnt;
-            visited = new boolean[n][m];
             bfs();
-            if(meltQ.size() > 0) {
-                Pair temp = meltQ.peek();
-                q.add(new Pair(temp.row, temp.col));
-            }
             iceBurgCnt -= meltQ.size();
             meltIceburg();
         }
@@ -73,6 +68,7 @@ public class Main {
     public static void meltIceburg() {
         while (!meltQ.isEmpty()) {
             Pair p = meltQ.poll();
+            q.add(p);
             grid[p.row][p.col] = 0;
         }
     }
