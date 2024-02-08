@@ -86,18 +86,17 @@ public class Main {
     }
 
     public static void getMaxArea() {
+        for(int j = 0; j < n; j++) {
+            for(int k = 0; k < n; k++) {
+                    visisted[j][k] = false;
+                }
+            }
         for (int i = 0; i < removeStones.size(); i++) {
             Pair p = stones.get(removeStones.get(i));
             grid[p.row][p.col] = 0;
         }
         
         for (int i = 0; i < startIdxs.length; i++) {
-            for(int j = 0; j < n; j++) {
-                for(int k = 0; k < n; k++) {
-                    visisted[j][k] = false;
-                }
-            }
-
             q.add(startIdxs[i]);
             visisted[startIdxs[i].row][startIdxs[i].col] = true;
             ans = Math.max(ans,bfs());
