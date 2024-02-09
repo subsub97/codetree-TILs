@@ -17,19 +17,24 @@ public class Main {
         st = new StringTokenizer(br.readLine());
         r1 = Integer.parseInt(st.nextToken()) -1;
         c1 = Integer.parseInt(st.nextToken()) -1;
-        r2 = Integer.parseInt(st.nextToken())-1;
-        c2 = Integer.parseInt(st.nextToken())-1;
+        r2 = Integer.parseInt(st.nextToken()) -1;
+        c2 = Integer.parseInt(st.nextToken()) -1;
 
         visited = new boolean[n][n];
 
         q.add(new Pair(r1, c1, 0));
         bfs();
-        System.out.println(ans);
-
+        if(r1 == r2 && c1 == c2) {
+            System.out.println(0);    
+        }
+        else{
+            System.out.println(ans);
+        }
     }
     public static boolean inRange(int r, int c) {
         return r >= 0 && r < n && c >= 0 && c < n;
     }
+
     public static boolean canGo(int r, int c) {
         if (!inRange(r, c)) {
             return false;
@@ -37,6 +42,7 @@ public class Main {
         if(visited[r][c]) return false;
         return true;
     }
+
     public static void bfs() {
         int[] drs = {2,1,2,-1,-1,-2,-2,1};
         int[] dcs = {1,-2,-1,-2,2,-1,1,2};
