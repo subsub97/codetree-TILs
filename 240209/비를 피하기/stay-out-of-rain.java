@@ -24,7 +24,7 @@ public class Main {
             for (int j = 0; j < n; j++) {
                 grid[i][j] = Integer.parseInt(st.nextToken());
                 if (grid[i][j] == 2) {
-                    locations.add(new Pair(i, j));
+                    locations.add(new Pair(i, j,0));
                 }
             }
         }
@@ -60,7 +60,7 @@ public class Main {
     public static void bfs() {
         int[] drs = {1, -1, 0, 0};
         int[] dcs = {0, 0, 1, -1};
-        int cnt = 0;
+
 
         Pair startP = q.peek();
 
@@ -73,7 +73,10 @@ public class Main {
 
             if(grid[curR][curC] == 3) {
                 //비를 피하는 곳이라면
-                ans[startP.row][startP.col] = cnt;
+                ans[startP.row][startP.col] = p.cnt;
+                while (!q.isEmpty()){
+                    q.poll();
+                }
                 break;
             }
 
@@ -81,8 +84,7 @@ public class Main {
                 int nR = curR + drs[i];
                 int nC = curC + dcs[i];
                 if (canGo(nR, nC)) {
-                    cnt++;
-                    q.add(new Pair(nR, nC));
+                    q.add(new Pair(nR, nC,p.cnt + 1));
                     visited[nR][nC] = true;
                 }
                 }
@@ -92,10 +94,11 @@ public class Main {
 
 
     public static class Pair {
-        int row, col;
-        Pair(int r, int c) {
+        int row, col,cnt;
+        Pair(int r, int c,int cn) {
             row = r;
             col = c;
+            cnt = cn;
         }
     }
 
