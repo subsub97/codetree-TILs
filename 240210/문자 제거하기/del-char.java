@@ -7,7 +7,7 @@ public class Main {
 
         while(word.length() > 1) {
             int k = Integer.parseInt(br.readLine().trim());
-            if(k > word.length()) {
+            if(k >= word.length()) {
                 word = word.substring(0,word.length()-1);
             }
             else
