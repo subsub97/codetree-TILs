@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
     public static int number;
     public static Queue<Node> q = new LinkedList<>();
-    public static boolean[] visited = new boolean[1_000_001];
+    public static boolean[] visited = new boolean[1_001_000];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
