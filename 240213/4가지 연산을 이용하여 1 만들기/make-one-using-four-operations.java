@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
     public static int number;
     public static Queue<Node> q = new LinkedList<>();
+    public static boolean[] visited = new boolean[1_000_001];
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,6 +18,9 @@ public class Main {
     public static void bfs() {
         while(!q.isEmpty()) {
             Node curNode = q.poll();
+            if(visited[curNode.number]) continue;
+            
+            visited[curNode.number] = true;
 
             int num = curNode.number;
 
@@ -24,7 +28,7 @@ public class Main {
                 System.out.println(curNode.count);
                 return;
             }
-
+            
             q.add(new Node(num - 1, curNode.count + 1)); // 1을 뺀 값
             q.add(new Node(num + 1, curNode.count + 1)); // 1을 더한 값
             if(num % 2 ==0) {
