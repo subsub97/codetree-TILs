@@ -52,6 +52,10 @@ public class Main {
         }
 
         for (int i = 1; i < n; i++) {
+            if(dist[i] == (int)1e9){
+                System.out.println(-1);
+                continue;
+            }
             System.out.println(dist[i]);
         }
     }
