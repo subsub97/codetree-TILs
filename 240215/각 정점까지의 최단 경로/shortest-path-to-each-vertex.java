@@ -42,6 +42,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(st.nextToken());
@@ -101,9 +102,11 @@ public class Main {
 
         for(int i = 1; i <=n; i++) {
             if(dist[i] == (int)1e9)
-                System.out.println(-1);
+                bw.write(-1 + "\n");
             else
-                System.out.println(dist[i]);
+                bw.write(dist[i] + "\n");
         }
+
+        bw.close();
     }
 }
