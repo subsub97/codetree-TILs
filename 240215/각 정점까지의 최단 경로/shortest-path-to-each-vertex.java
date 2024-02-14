@@ -88,7 +88,7 @@ public class Main {
                 int targetDist = graph[minIndex].get(j).dist;
 
                 //현재 위치에서 연결된 간선으로 가는 것이 더 작다면 갱신
-                int newDist = dist[minDist] + targetDist;
+                int newDist = dist[minIndex] + targetDist;
                 if(dist[targetIndex] > newDist) {
                     // 값 갱신하고 우선순위 큐에 정보 넣기
                     dist[targetIndex] = newDist;
@@ -97,7 +97,7 @@ public class Main {
             }
         }
 
-        
+
 
         for(int i = 1; i <=n; i++) {
             if(dist[i] == (int)1e9)
