@@ -97,11 +97,13 @@ public class Main {
             }
         }
 
-        System.out.println(dist[k]);
+        
 
         for(int i = 1; i <=n; i++) {
-            if(i == k) continue;
-            System.out.println(dist[i]);
+            if(dist[i] == (int)1e9)
+                System.out.println(-1);
+            else
+                System.out.println(dist[i]);
         }
     }
 }
