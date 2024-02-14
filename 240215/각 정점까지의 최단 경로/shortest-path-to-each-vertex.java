@@ -1,112 +1,105 @@
 import java.io.*;
-import java.util.*;
+import java.util.*; 
+class Node implements Comparable<Node>{
+    int vertex, dist; 
 
-class Edge {
-    int x,y,z;
-
-    public Edge(int x, int y, int z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-};
-
-class Node {
-    int index, dist;
-
-    public Node(int index, int dist) {
-        this.index = index;
-        this.dist = dist;
-    }
-};
-
-class Element implements Comparable<Element> {
-    int dist, index;
-
-    public Element(int dist, int index) {
-        this.dist = dist;
-        this.index = index;
+    public Node(int vertex, int dist){
+        this.vertex = vertex;
+        this.dist = dist; 
     }
 
     @Override
-    public int compareTo(Element e) {
-        return this.dist - e.dist; //dist 기준 오름차순 정렬
+    public int compareTo(Node o){
+        return this.dist - o.dist; 
     }
+    @Override
+    public String toString(){
+        return this.vertex+":"+this.dist; 
+    }
+
 }
+
+
 public class Main {
-    public static int n,m,k;
-    public static ArrayList<Node>[] graph = new ArrayList[20001];
-    public static PriorityQueue<Element> pq = new PriorityQueue<>();
+    static BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
+    static StringTokenizer tokens; 
 
-    public static int[] dist = new int[20001];
+    static int[] dist; 
+    static ArrayList<Node>[] graph; 
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+    static int n; 
+    static int m;     
+    static int k; 
 
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        k = Integer.parseInt(br.readLine().trim());
 
-        Edge[] edges = new Edge[m+1];
+    static final int MAX = (int)1e9; 
 
-        for(int i = 1; i <= n; i++) {
-            graph[i] = new ArrayList<>();
+    static void init() throws IOException{
+        tokens = new StringTokenizer(buffer.readLine());
+
+        n = Integer.valueOf(tokens.nextToken());
+        m = Integer.valueOf(tokens.nextToken());
+
+        k = Integer.valueOf(buffer.readLine()); 
+
+
+        graph = new ArrayList[n+1];
+        dist = new int[n+1]; 
+
+        for(int i=0; i<=n; i++){
+            graph[i] = new ArrayList<>(); 
         }
 
-        for(int i = 1; i<= m ; i++) {
-            st = new StringTokenizer(br.readLine());
+        Arrays.fill(dist, MAX); 
 
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            int w = Integer.parseInt(st.nextToken());
+        for(int i=0; i<m; i++){
+            tokens = new StringTokenizer(buffer.readLine()); 
+            int node1 = Integer.valueOf(tokens.nextToken());
+            int node2 = Integer.valueOf(tokens.nextToken());
+            int w = Integer.valueOf(tokens.nextToken());
 
-            edges[i] = new Edge(x,y,w);
-            graph[x].add(new Node(y,w));
-            graph[y].add(new Node(x,w));
+            graph[node1].add(new Node(node2, w));
+            graph[node2].add(new Node(node1, w));
         }
+    }
 
-        for(int i = 1; i <= n; i++) {
-            dist[i] = (int)1e9;
-        }
+    public static void main(String[] args)throws IOException{
+        init(); 
 
+        PriorityQueue<Node> pq = new PriorityQueue<>(); 
+
+        pq.add(new Node(k, 0));
         dist[k] = 0;
 
-        pq.add(new Element(0,k));
 
-        while(!pq.isEmpty())  {
-            int minDist = pq.peek().dist;
-            int minIndex = pq.peek().index;
-            pq.poll();
+        while(!pq.isEmpty()){
+            Node cur = pq.poll();
 
-            // 같은 정점의 원소가 여러번 들어가는 문제가 발생할 수 있기에 minDist가 최신 dist[minIndex]값과 다르면 패스
-            if(minDist != dist[minIndex])
-                continue;
+            if(dist[cur.vertex]!=cur.dist) continue; 
+            for(Node target : graph[cur.vertex]){
+                int newDist = dist[cur.vertex] + target.dist;
 
-            for(int j = 0; j < graph[minIndex].size(); j++) {
-                int targetIndex = graph[minIndex].get(j).index;
-                int targetDist = graph[minIndex].get(j).dist;
-
-                //현재 위치에서 연결된 간선으로 가는 것이 더 작다면 갱신
-                int newDist = dist[minIndex] + targetDist;
-                if(dist[targetIndex] > newDist) {
-                    // 값 갱신하고 우선순위 큐에 정보 넣기
-                    dist[targetIndex] = newDist;
-                    pq.add(new Element(newDist, targetIndex));
+                if(dist[target.vertex]>newDist){
+                    dist[target.vertex] = newDist; 
+                    pq.add(new Node(target.vertex, newDist));
                 }
             }
         }
 
+        StringBuilder sb = new StringBuilder(); 
 
+        for(int end=1; end<=n; end++){
+ 
 
-        for(int i = 1; i <=n; i++) {
-            if(dist[i] == (int)1e9)
-                bw.write(-1 + "\n");
-            else
-                bw.write(dist[i] + "\n");
+            if(dist[end]==MAX){
+                sb.append(-1).append("\n");
+            }else{
+                sb.append(dist[end]).append("\n");
+            }
         }
 
-        bw.close();
+        System.out.println(sb); 
+
+
     }
 }
