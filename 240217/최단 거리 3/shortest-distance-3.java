@@ -3,6 +3,8 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -14,7 +16,11 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        int[][] graph = new int[n+1][n+1]; //인접 행렬 그래프 생성
+        ArrayList<Element>[] graph = new ArrayList[n+1];
+
+        for (int i = 1; i < n+1; i++) {
+            graph[i] = new ArrayList<>();
+        }
 
         for (int i = 0; i < m; i++) {
             st = new StringTokenizer(br.readLine());
@@ -23,17 +29,10 @@ public class Main {
             int y = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
 
-
-
-            if(graph[x][y] != 0){
-                graph[x][y] = Math.min(graph[x][y],w);
-                graph[y][x] = Math.min(graph[y][x],w);
-            }
-            else{
-                graph[x][y] = w;
-                graph[y][x] = w;
-            }
+            graph[x].add(new Element(w, y));
+            graph[y].add(new Element(w, x));
         }
+
         st = new StringTokenizer(br.readLine());
 
         int start = Integer.parseInt(st.nextToken());
@@ -44,31 +43,44 @@ public class Main {
             dist[i] = (int) 1e9;
         }
 
-        dist[end] = 0;
-        boolean[] visited = new boolean[n + 1];
+        dist[start] = 0;
+        PriorityQueue<Element> pq = new PriorityQueue<>();
+        pq.add(new Element(0, start));
+        while(!pq.isEmpty()) {
+            int minIndex = pq.peek().index;
+            int minDist = pq.peek().dist;
+            pq.poll();
 
-        int idx = start;
+            if(minDist != dist[minIndex]) continue;
 
-        //도착점을 기준으로 다익스트라 실행
-        for (int i = 1; i <= n; i++) {
-            int minIndex = -1;
-            for (int j = 1; j <= n; j++) {
-                if(visited[j]) continue;
+            for (int i = 0; i < graph[minIndex].size(); i++) {
+                int targetIndex = graph[minIndex].get(i).index;
+                int targetDist = graph[minIndex].get(i).dist;
+                int newDist = minDist + targetDist;
 
-                if(minIndex == -1 || dist[minIndex]  > dist[j])
-                    minIndex = j;
-            }
-
-            visited[minIndex] = true;
-
-            for (int j = 1; j <= n; j++) {
-                if(graph[minIndex][j] == 0) continue;
-
-                dist[j] = Math.min(dist[j], dist[minIndex] + graph[minIndex][j]);
+                if(dist[targetIndex] > newDist) {
+                    dist[targetIndex] = newDist;
+                    pq.add(new Element(newDist, targetIndex));
+                }
             }
         }
-        bw.write(dist[start] + "\n");
+        
+        bw.write(dist[end]+"");
         bw.close();
 
+    }
+
+    public static class Element implements Comparable<Element> {
+        int dist, index;
+
+        Element(int d, int i) {
+            dist = d;
+            index = i;
+        }
+
+        @Override
+        public int compareTo(Element e) {
+            return this.dist - e.dist;
+        }
     }
 }
