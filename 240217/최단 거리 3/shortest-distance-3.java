@@ -23,12 +23,15 @@ public class Main {
             int y = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
 
-            graph[x][y] = w;
-            graph[y][x] = w;
+
 
             if(graph[x][y] != 0){
                 graph[x][y] = Math.min(graph[x][y],w);
                 graph[y][x] = Math.min(graph[y][x],w);
+            }
+            else{
+                graph[x][y] = w;
+                graph[y][x] = w;
             }
         }
         st = new StringTokenizer(br.readLine());
