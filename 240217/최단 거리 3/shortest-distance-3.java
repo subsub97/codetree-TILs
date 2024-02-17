@@ -23,8 +23,8 @@ public class Main {
             int y = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
 
-            graph[x][y] = Math.min(graph[x][y],w);
-            graph[y][x] = Math.min(graph[y][x],w);
+            graph[x][y] = w;
+            graph[y][x] = w;
 
             if(graph[x][y] != 0){
                 graph[x][y] = Math.min(graph[x][y],w);
