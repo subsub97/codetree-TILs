@@ -36,10 +36,8 @@ public class Main {
             dist[i] = (int) 1e9;
         }
 
-        dist[end] = 0;
+        dist[start] = 0;
         boolean[] visited = new boolean[n + 1];
-
-        int idx = start;
 
         //도착점을 기준으로 다익스트라 실행
         for (int i = 1; i <= n; i++) {
@@ -59,7 +57,7 @@ public class Main {
                 dist[j] = Math.min(dist[j], dist[minIndex] + graph[minIndex][j]);
             }
         }
-        bw.write(dist[start] + "\n");
+        bw.write(dist[end] + "\n");
         bw.close();
 
     }
