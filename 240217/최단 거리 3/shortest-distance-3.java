@@ -23,8 +23,13 @@ public class Main {
             int y = Integer.parseInt(st.nextToken());
             int w = Integer.parseInt(st.nextToken());
 
-            graph[x][y] = w;
-            graph[y][x] = w;
+            graph[x][y] = Math.min(graph[x][y],w);
+            graph[y][x] = Math.min(graph[y][x],w);
+
+            if(graph[x][y] != 0){
+                graph[x][y] = Math.min(graph[x][y],w);
+                graph[y][x] = Math.min(graph[y][x],w);
+            }
         }
         st = new StringTokenizer(br.readLine());
 
@@ -36,8 +41,10 @@ public class Main {
             dist[i] = (int) 1e9;
         }
 
-        dist[start] = 0;
+        dist[end] = 0;
         boolean[] visited = new boolean[n + 1];
+
+        int idx = start;
 
         //도착점을 기준으로 다익스트라 실행
         for (int i = 1; i <= n; i++) {
@@ -57,7 +64,7 @@ public class Main {
                 dist[j] = Math.min(dist[j], dist[minIndex] + graph[minIndex][j]);
             }
         }
-        bw.write(dist[end] + "\n");
+        bw.write(dist[start] + "\n");
         bw.close();
 
     }
