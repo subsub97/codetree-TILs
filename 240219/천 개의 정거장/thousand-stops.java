@@ -34,6 +34,7 @@ public class Main {
                 // 그래프는 연결된 간선 초기화
                 graph[i][j] = new Pair((long)1e17,0);
             }
+            graph[i][i] = new Pair(0,0);
         }
 
         for (int i = 1; i <= 3 ; i++) {
@@ -77,12 +78,14 @@ public class Main {
             }
 
             visited[minIndex] = true;
-
+            long minCost = dist[minIndex].dist;
+            long minTime = dist[minIndex].time;
             for (int j = 1; j <= MAX_STATION ; j++) {
-                if (dist[j].canRenew(new Pair(dist[minIndex].dist + graph[minIndex][j].dist,
-                        dist[minIndex].time + graph[minIndex][j].time))) {
-                    dist[j] = new Pair(dist[minIndex].dist + graph[minIndex][j].dist,
-                            dist[minIndex].time + graph[minIndex][j].time);
+                long cost = graph[minIndex][j].dist;
+                long time = graph[minIndex][j].time;
+                Pair newP = new Pair(minCost + cost, minTime + time);
+                if (dist[j].canRenew(newP)) {
+                    dist[j] = newP;
                 }
             }
         }
