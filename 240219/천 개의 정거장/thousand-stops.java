@@ -37,7 +37,7 @@ public class Main {
             graph[i][i] = new Pair(0,0);
         }
 
-        for (int i = 1; i <= 3 ; i++) {
+        for (int i = 1; i <=  busCount; i++) {
             st = new StringTokenizer(br.readLine());
             int fare = Integer.parseInt(st.nextToken());
             int staionCount = Integer.parseInt(st.nextToken());
