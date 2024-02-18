@@ -34,7 +34,7 @@ public class Main {
                 // 그래프는 연결된 간선 초기화
                 graph[i][j] = new Pair((long)1e17,0);
             }
-            graph[i][i] = new Pair(0,0);
+            
         }
 
         for (int i = 1; i <=  busCount; i++) {
