@@ -76,6 +76,10 @@ public class Main {
             Stack<Integer> minPaths = new Stack<>();
             int minCnt = 1;
 
+            if(dist[endB] == 20_000_000_000L) {
+                System.out.println("-1 -1");
+            }
+
             while(x != startA){
                 minPaths.push(x);
                 minCnt++;
