@@ -6,7 +6,7 @@ vistied=[False]*N
 
 def dfs(v):
   global count
-  vistied[v]=True
+  
   for curr_v in range(1,N+1):
     if array[v][curr_v]==1 and vistied[curr_v]==False:
       vistied[curr_v]=True
