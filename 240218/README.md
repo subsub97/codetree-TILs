@@ -4,15 +4,15 @@
 24년 02월 18일 목표(240px)까지 230px 남았습니다.
 
 ![10xp](https://img.shields.io/badge/EXP-10xp-%235cb85c.svg?for-the-badge)
-![0일째](https://img.shields.io/badge/연속학습-0일째-%23E34F26.svg?for-the-badge)
+![40일째](https://img.shields.io/badge/연속학습-40일째-%23E34F26.svg?for-the-badge)
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-2|10xp|0일째❄️|
+2|10xp|40일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
-|[Intermediate Mid / Shortest Path / Dijkstra](https://www.codetree.ai/missions?missionId=8)|[[연습]천 개의 정거장](https://www.codetree.ai/missions/8/problems/thousand-stops)|![보통][medium]|![Failed][failed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240218/%EC%B2%9C%20%EA%B0%9C%EC%9D%98%20%EC%A0%95%EA%B1%B0%EC%9E%A5/thousand-stops.java)|
+|[Intermediate Mid / Shortest Path / Dijkstra](https://www.codetree.ai/missions?missionId=8)|[[연습]천 개의 정거장](https://www.codetree.ai/missions/8/problems/thousand-stops)|![보통][medium]|![Passed][passed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240218/%EC%B2%9C%20%EA%B0%9C%EC%9D%98%20%EC%A0%95%EA%B1%B0%EC%9E%A5/thousand-stops.java)|
 |[Novice Low / 문자열 / 아스키 코드](https://www.codetree.ai/missions?missionId=4)|[[개념]아스키코드의 합과 차](https://www.codetree.ai/missions/4/problems/sum-and-subtract-in-ASCII)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240218/%EC%95%84%EC%8A%A4%ED%82%A4%EC%BD%94%EB%93%9C%EC%9D%98%20%ED%95%A9%EA%B3%BC%20%EC%B0%A8/sum-and-subtract-in-ASCII.java)|
 
 
