@@ -4,15 +4,15 @@
 24년 02월 16일 목표(240px)까지 230px 남았습니다.
 
 ![10xp](https://img.shields.io/badge/EXP-10xp-%235cb85c.svg?for-the-badge)
-![0일째](https://img.shields.io/badge/연속학습-0일째-%23E34F26.svg?for-the-badge)
+![38일째](https://img.shields.io/badge/연속학습-38일째-%23E34F26.svg?for-the-badge)
 
 |총 문제수|획득 경험치|연속 학습|
 |---:|---:|---|
-2|10xp|0일째❄️|
+2|10xp|38일째🔥|
 
 |교재|이름|난이도|상태|최근 제출 코드|
 |---|---|:---:|:---:|---|
-|[Intermediate Mid / Shortest Path / Dijkstra](https://www.codetree.ai/missions?missionId=8)|[[개념]최단 거리 9](https://www.codetree.ai/missions/8/problems/shortest-distance-9)|![쉬움][easy]|![Failed][failed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240216/%EC%B5%9C%EB%8B%A8%20%EA%B1%B0%EB%A6%AC%209/shortest-distance-9.java)|
+|[Intermediate Mid / Shortest Path / Dijkstra](https://www.codetree.ai/missions?missionId=8)|[[개념]최단 거리 9](https://www.codetree.ai/missions/8/problems/shortest-distance-9)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240216/%EC%B5%9C%EB%8B%A8%20%EA%B1%B0%EB%A6%AC%209/shortest-distance-9.java)|
 |[Novice Low / 문자열 / 문자열 비교](https://www.codetree.ai/missions?missionId=4)|[[개념]일치하는 문자열의 수](https://www.codetree.ai/missions/4/problems/num-of-correct-string)|![쉬움][easy]|![Passed][passed]|[링크](https://github.com/subsub97/codetree-TILs/blob/main/240216/%EC%9D%BC%EC%B9%98%ED%95%98%EB%8A%94%20%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%98%20%EC%88%98/num-of-correct-string.java)|
 
 
