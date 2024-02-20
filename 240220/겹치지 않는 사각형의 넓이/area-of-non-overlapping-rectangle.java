@@ -10,10 +10,10 @@ public class Main {
 
         for(int i = 0 ; i < 3; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int x1 = Integer.parseInt(st.nextToken());
-            int y1 = Integer.parseInt(st.nextToken());
-            int x2 = Integer.parseInt(st.nextToken());
-            int y2 = Integer.parseInt(st.nextToken());
+            int x1 = Integer.parseInt(st.nextToken()) + OFFSET;
+            int y1 = Integer.parseInt(st.nextToken()) + OFFSET;
+            int x2 = Integer.parseInt(st.nextToken()) + OFFSET;
+            int y2 = Integer.parseInt(st.nextToken()) + OFFSET;
 
             if(i == 2) {
                 for(int j = y1; j < y2; j++ ) {
