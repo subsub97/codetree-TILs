@@ -115,41 +115,47 @@ public class Main {
 
         long[] dist = new long[n * n + 1];
 
-        for (int i = 0; i < dist.length; i++) {
-            dist[i] = (long)1e17;
-        }
 
-        dist[1] = 0;
-
+        long maxDist = 0;
         PriorityQueue<Element> pq = new PriorityQueue<>();
 
-        pq.add(new Element(0, 1));
+        for (int i = 1; i < n*n+1; i++) {
+            for (int j = 0; j < dist.length; j++) {
+                dist[j] = (long)1e17;
+            }
 
-        while(!pq.isEmpty()) {
-            int minIndex = pq.peek().index;
-            int minDist = pq.peek().dist;
+            dist[i] = 0;
 
-            pq.poll();
+            pq.add(new Element(0, i));
 
-            if(dist[minIndex] != minDist) continue;
+            while(!pq.isEmpty()) {
+                int minIndex = pq.peek().index;
+                int minDist = pq.peek().dist;
 
-            for (int i = 0; i < graph[minIndex].size(); i++) {
-                int targetIndex = graph[minIndex].get(i).index;
-                int targetDist = graph[minIndex].get(i).dist;
-                int newDist = minDist + targetDist;
+                pq.poll();
 
-                if(dist[targetIndex] > newDist) {
-                    dist[targetIndex] = newDist;
-                    pq.add(new Element(newDist, targetIndex));
+                if(dist[minIndex] != minDist) continue;
+
+                for (int j = 0; j < graph[minIndex].size(); j++) {
+                    int targetIndex = graph[minIndex].get(j).index;
+                    int targetDist = graph[minIndex].get(j).dist;
+                    int newDist = minDist + targetDist;
+
+                    if(dist[targetIndex] > newDist) {
+                        dist[targetIndex] = newDist;
+                        pq.add(new Element(newDist, targetIndex));
+                    }
+
                 }
+            }
 
+
+
+            for (int j = 1; j < dist.length; j++) {
+                maxDist = Math.max(maxDist, dist[j]);
             }
         }
-        long maxDist = 0;
 
-        for (int i = 1; i < dist.length; i++) {
-            maxDist = Math.max(maxDist, dist[i]);
-        }
 
         System.out.println(maxDist);
     }
