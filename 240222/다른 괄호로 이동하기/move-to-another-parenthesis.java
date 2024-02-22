@@ -68,12 +68,12 @@ public class Main {
                     int v1 =  (i * n) + (j + 1);
                     int v2 = v1 + 1;
                     if(grid[i][j] == grid[i][j+1]) {
-                        graph[v1].add(new Element(1, v2));
-                        graph[v2].add(new Element(1, v1));
+                        graph[v1].add(new Element(a, v2));
+                        graph[v2].add(new Element(a, v1));
                     }
                     else{
-                        graph[v1].add(new Element(2, v2));
-                        graph[v2].add(new Element(2, v1));
+                        graph[v1].add(new Element(b, v2));
+                        graph[v2].add(new Element(b, v1));
                     }
                 }
                 continue;
@@ -84,31 +84,31 @@ public class Main {
                 int v3 = v1 + n;
                 if(j == n-1) {
                     if(grid[i][j] == grid[i+1][j]) {
-                        graph[v1].add(new Element(1, v3));
-                        graph[v3].add(new Element(1, v1));
+                        graph[v1].add(new Element(a, v3));
+                        graph[v3].add(new Element(a, v1));
                     }
                     else{
-                        graph[v1].add(new Element(2, v3));
-                        graph[v3].add(new Element(2, v1));
+                        graph[v1].add(new Element(b, v3));
+                        graph[v3].add(new Element(b, v1));
                     }
                     continue;
                 }
 
                 if(grid[i][j] == grid[i][j+1]) {
-                    graph[v1].add(new Element(1, v2));
-                    graph[v2].add(new Element(1, v1));
+                    graph[v1].add(new Element(a, v2));
+                    graph[v2].add(new Element(a, v1));
                 }
                 else{
-                    graph[v1].add(new Element(2, v2));
-                    graph[v2].add(new Element(2, v1));
+                    graph[v1].add(new Element(b, v2));
+                    graph[v2].add(new Element(b, v1));
                 }
                 if(grid[i][j] == grid[i+1][j]) {
-                    graph[v1].add(new Element(1, v3));
-                    graph[v3].add(new Element(1, v1));
+                    graph[v1].add(new Element(a, v3));
+                    graph[v3].add(new Element(a, v1));
                 }
                 else{
-                    graph[v1].add(new Element(2, v3));
-                    graph[v3].add(new Element(2, v1));
+                    graph[v1].add(new Element(b, v3));
+                    graph[v3].add(new Element(b, v1));
                 }
             }
         }
