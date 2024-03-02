@@ -59,7 +59,7 @@ public class Main {
                 seqCnt = 1;
             }
         }
-        if(seqCnt == m) {
+        if(seqCnt >= m) {
             explode(0,seqCnt);
         }
 
