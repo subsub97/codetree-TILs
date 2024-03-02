@@ -14,10 +14,15 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
+
         bombs = new int[n][1];
 
         for (int i = 0; i < n; i++) {
             bombs[i][0] = Integer.parseInt(br.readLine().trim());
+        }
+
+        if(m == 1) {
+            bombs = new int[n][1];
         }
 
         for (int i = 0; i < n; i++) {
