@@ -59,6 +59,9 @@ public class Main {
                 seqCnt = 1;
             }
         }
+        if(seqCnt == m) {
+            explode(0,seqCnt);
+        }
 
         //터진 폭탄이 있는 경우 떨어트리기
         dropBombs();
