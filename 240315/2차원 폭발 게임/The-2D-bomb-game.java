@@ -32,8 +32,8 @@ public class Main {
             visited = new boolean[n][n];
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    if(visited[i][j]) continue;
-                    while(canExplode(i,j)) {
+                    if(grid[i][j] == 0) continue;
+                    if(canExplode(i,j)) {
                         explode(i,j);
                         drop();
                     }
@@ -76,7 +76,7 @@ public class Main {
 
     public static boolean canExplode(int r, int c) {
         int curNum = grid[r][c];
-        if (curNum == 0) return false;
+
         for(int i = r; i < r+m; i++) {
             if( !inRange(i,c) || curNum != grid[i][c]) return false;
         }
