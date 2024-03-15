@@ -21,11 +21,6 @@ public class Main {
         nextGrid = new int[n][n];
         visited = new boolean[n][n];
 
-
-        int result = 0;
-
-
-
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < n; j++) {
@@ -38,8 +33,9 @@ public class Main {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     if(visited[i][j]) continue;
-                    if(canExplode(i,j)) {
+                    while(canExplode(i,j)) {
                         explode(i,j);
+                        drop();
                     }
                 }
             }
@@ -51,19 +47,15 @@ public class Main {
         System.out.println(countEmptyNumber());
     }
 
-    // grid를 시계방향으로 90' 회전시킵니다.
     public static void rotate() {
-        // nextGrid를 0으로 초기화합니다.
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 nextGrid[i][j] = 0;
 
-        // 90' 회전합니다.
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 nextGrid[i][j] = grid[n - j - 1][i];
 
-        // nextGrid를 grid에 옮겨줍니다.
         for(int i = 0; i < n; i++)
             for(int j = 0; j < n; j++)
                 grid[i][j] = nextGrid[i][j];
@@ -84,7 +76,7 @@ public class Main {
 
     public static boolean canExplode(int r, int c) {
         int curNum = grid[r][c];
-
+        if (curNum == 0) return false;
         for(int i = r; i < r+m; i++) {
             if( !inRange(i,c) || curNum != grid[i][c]) return false;
         }
