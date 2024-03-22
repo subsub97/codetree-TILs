@@ -44,7 +44,7 @@ public class Main {
         while(row < n) {
             for(int i = col; i < col + m; i++) {
                 // 벽이 있는 경우 멈춘다.
-                if(isBlock(row, col)) {
+                if(isBlock(row, i)) {
                     canPlay = false;
                     break;
                 }
