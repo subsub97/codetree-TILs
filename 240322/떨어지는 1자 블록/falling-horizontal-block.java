@@ -49,11 +49,12 @@ public class Main {
                     break;
                 }
             }
-            row++;
+
             if(!canPlay) break;
-            
+            row++;
+
         }
-        
+
         for (int i = col; i < col + m; i++) {
             grid[row-1][i] = 1;
         }
