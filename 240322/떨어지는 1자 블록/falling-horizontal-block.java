@@ -37,11 +37,11 @@ public class Main {
     }
 
     public static void dropBlock() {
-        int row = 0;
+        int row = 1;
         int col = k - 1;
         boolean canPlay = true;
 
-        while(row++ < n) {
+        while(row < n) {
             for(int i = col; i < col + m; i++) {
                 // 벽이 있는 경우 멈춘다.
                 if(isBlock(row, col)) {
@@ -49,9 +49,11 @@ public class Main {
                     break;
                 }
             }
+            row++;
             if(!canPlay) break;
-
+            
         }
+        
         for (int i = col; i < col + m; i++) {
             grid[row-1][i] = 1;
         }
