@@ -17,7 +17,7 @@ public class Main {
 
     public static int maxNum(int n, int[] iarr){
         
-        if(n<=){
+        if(n<0){
             return max;
         }
         else {
