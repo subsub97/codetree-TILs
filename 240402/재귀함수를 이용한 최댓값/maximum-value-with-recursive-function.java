@@ -11,18 +11,18 @@ public class Main {
         String[] str = strs.split(" ");
 
         int [] iarr = Arrays.stream(str).mapToInt(Integer::parseInt).toArray();
-        System.out.println(maxNum(n,iarr));
+        System.out.println(maxNum(n-1,iarr));
         
     }
 
     public static int maxNum(int n, int[] iarr){
         
-        if(n<=0){
+        if(n<=){
             return max;
         }
         else {
-            max = max<iarr[n-1]? iarr[n-1]: max ;
-            return maxNum(n-2,iarr);
+            max = max<iarr[n]? iarr[n]: max ;
+            return maxNum(n-1,iarr);
         }
        
     }
