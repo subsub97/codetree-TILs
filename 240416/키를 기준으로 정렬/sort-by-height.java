@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
 // 학생들의 정보를 나타내는 클래스 선언
 class Student implements Comparable<Student> {
@@ -19,11 +19,11 @@ class Student implements Comparable<Student> {
 };
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // 변수 선언 및 입력:
-        int n = sc.nextInt();
+       int n = Integer.parseInt(br.readLine());
         Student[] students = new Student[n];
         for(int i = 0; i < n; i++) {
             String name = sc.next();
