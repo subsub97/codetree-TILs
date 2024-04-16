@@ -23,12 +23,13 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         // 변수 선언 및 입력:
-       int n = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());
         Student[] students = new Student[n];
         for(int i = 0; i < n; i++) {
-            String name = sc.next();
-            int height = sc.nextInt();
-            int weight = sc.nextInt();
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            String name = st.nextToken();
+            int height = Integer.parseInt(st.nextToken());
+            int weight = Integer.parseInt(st.nextToken());
 
             // Student 객체를 생성해 리스트에 추가합니다.
             students[i] = new Student(name, height, weight);
