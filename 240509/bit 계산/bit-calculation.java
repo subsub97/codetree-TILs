@@ -21,7 +21,7 @@ public class Main {
                 result = (1 << x) | result;
             } else if (cmd.equals("delete")) {
                 x = Integer.parseInt(st.nextToken());
-                result =  (result | (1 << x)) ^ 2 << x;
+                result =  (result | (1 << x)) ^ 1 << x;
             } else if (cmd.equals("print")) {
                 x = Integer.parseInt(st.nextToken());
                 System.out.println((result >> x) & 1);
