@@ -43,6 +43,9 @@ public class Main {
     public static void dfs(int row, int currentCost, int depth) {
 
         if (depth == N - 1) {
+            if(grid[row][0] == 0) {
+                return;
+            }
             currentCost += grid[row][0];
             minCost = Math.min(currentCost, minCost);
             return;
