@@ -42,17 +42,18 @@ public class Main {
         int[] dwrs = {1, 0, -1, 0};
         int[] dwcs = {0, -1, 0, 1};
 
-        for(int i =0; i < 4; i++) {
-            int nR = startR + dwrs[i];
-            int nC = startC + dwcs[i];
+        // for(int i =0; i < 4; i++) {
+        //     int nR = startR + dwrs[i];
+        //     int nC = startC + dwcs[i];
 
-            if(inRange(nR, nC)) {
-                if(grid[nR][nC] == 1) {
-                    dir = i;
-                    break;
-                }
-            }
-        }
+        //     if(inRange(nR, nC)) {
+        //         if(grid[nR][nC] == 1) {
+        //             dir = i;
+        //             break;
+        //         }
+        //     }
+        // }
+        dir = 0;
         
         while(!isEscape) {
             move();
