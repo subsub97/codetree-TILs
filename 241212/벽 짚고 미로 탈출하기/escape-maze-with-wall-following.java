@@ -77,7 +77,7 @@ public class Main {
         elaspedTime++;
         
         if(inRange(nR,nC)) {
-            if(visited[nR][nC] > 3) {
+            if(visited[nR][nC] > 2) {
                 neverEscape = true;
                 return;
             }
