@@ -42,17 +42,6 @@ public class Main {
         int[] dwrs = {1, 0, -1, 0};
         int[] dwcs = {0, -1, 0, 1};
 
-        // for(int i =0; i < 4; i++) {
-        //     int nR = startR + dwrs[i];
-        //     int nC = startC + dwcs[i];
-
-        //     if(inRange(nR, nC)) {
-        //         if(grid[nR][nC] == 1) {
-        //             dir = i;
-        //             break;
-        //         }
-        //     }
-        // }
         dir = 0;
         
         while(!isEscape) {
@@ -94,11 +83,13 @@ public class Main {
             }
 
             if(grid[nR][nC] == 1) {
+
                 //벽인 경우
                 dir = (dir + 3) % 4;
                 nR = startR + drs[dir];
                 nC = startC + dcs[dir];
-                
+                nRw = nR + dwrs[dir];
+                nCw = nC + dwcs[dir];
                 if(!inRange(nR,nC)) {
                     isEscape = true;
                     return;
@@ -118,13 +109,16 @@ public class Main {
                             return;
                         }
                     }
+
                     if(grid[nRw][nCw] != 1){
-                    dir = (dir + 1) % 4;
-                }
+                        //System.out.print("ㅁㅁㅁㅁ");
+                        dir = (dir + 1) % 4;
+                    }
                 }
             }
             else{
                 if(grid[nRw][nCw] != 1){
+                    // System.out.print("aaa");
                     dir = (dir + 1) % 4;
                 }
             }
@@ -135,7 +129,7 @@ public class Main {
             isEscape = true;
             
         }
-        // System.out.println(nR + " " + nC +" " + nRw +" " + nCw);
+        // System.out.println(nR + " " + nC);
         startR = nR;
         startC = nC;
         
@@ -145,3 +139,4 @@ public class Main {
         return r >= 0 && r < N && c >= 0 && c < N;
     }
 }
+//33 42
