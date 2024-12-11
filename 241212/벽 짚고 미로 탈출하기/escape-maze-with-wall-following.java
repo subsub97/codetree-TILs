@@ -85,7 +85,7 @@ public class Main {
         int nCw = nC + dwcs[dir];
 
         elaspedTime++;
-
+        
         if(inRange(nR,nC)) {
             if(visited[nR][nC] > 3) {
                 neverEscape = true;
@@ -109,13 +109,17 @@ public class Main {
 
                         nR = startR + drs[dir];
                         nC = startC + dcs[dir];
+                        nRw = nR + dwrs[dir];
+                        nCw = nC + dwcs[dir];
                         cnt++;
                         if(cnt > 4) {
                             neverEscape = true;
                             return;
                         }
                     }
-                    elaspedTime++;
+                    if(grid[nRw][nCw] != 1){
+                    dir = (dir + 1) % 4;
+                }
                 }
             }
             else{
@@ -130,6 +134,7 @@ public class Main {
             isEscape = true;
             
         }
+        // System.out.println(nR + " " + nC +" " + nRw +" " + nCw);
         startR = nR;
         startC = nC;
         
