@@ -103,12 +103,17 @@ public class Main {
                     return;
                 }
                 else{
+                    int cnt = 0;
                     while(grid[nR][nC] == 1) {
                         dir = (dir + 3) % 4;
 
                         nR = startR + drs[dir];
                         nC = startC + dcs[dir];
-                        
+                        cnt++;
+                        if(cnt > 4) {
+                            neverEscape = true;
+                            return;
+                        }
                     }
                     elaspedTime++;
                 }
