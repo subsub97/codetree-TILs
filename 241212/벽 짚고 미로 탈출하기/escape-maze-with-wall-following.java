@@ -4,7 +4,7 @@ import java.io.*;
 public class Main {
     static int N,elaspedTime,dir;
     static int[][] grid;
-    static boolean[][] visited;
+    static int[][] visited;
 
     static boolean isEscape = false;
     static boolean neverEscape = false;
@@ -25,7 +25,7 @@ public class Main {
     
 
         grid = new int[N][N];
-        visited = new boolean[N][N];
+        visited = new int[N][N];
 
         for(int i =0; i < N; i++) {
             String line = br.readLine();
@@ -87,7 +87,7 @@ public class Main {
         elaspedTime++;
 
         if(inRange(nR,nC)) {
-            if(visited[nR][nC]) {
+            if(visited[nR][nC] > 3) {
                 neverEscape = true;
                 return;
             }
@@ -114,7 +114,7 @@ public class Main {
                     dir = (dir + 1) % 4;
                 }
             }
-            visited[nR][nC] = true;
+            visited[nR][nC]++;
         }
         else{
             // 바라보고 있는 방향으로 이동 가능한 경우(격자 밖이면 탈출 성공)
