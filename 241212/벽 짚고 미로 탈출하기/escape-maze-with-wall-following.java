@@ -103,10 +103,14 @@ public class Main {
                     return;
                 }
                 else{
-                    if(grid[nR][nC] == 1) {
-                        neverEscape = true;
-                        return;
+                    while(grid[nR][nC] == 1) {
+                        dir = (dir + 3) % 4;
+
+                        nR = startR + drs[dir];
+                        nC = startC + dcs[dir];
+                        
                     }
+                    elaspedTime++;
                 }
             }
             else{
