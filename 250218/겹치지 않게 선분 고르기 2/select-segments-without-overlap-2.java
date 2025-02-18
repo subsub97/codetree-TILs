@@ -34,9 +34,22 @@ public class Main {
 
         selected = new int[set.size()];
         
-        dfs(0,1);
+        for(int i =0; i < 1001; i++) {
+        	if(lines[i] != null) {
+        		Collections.sort(lines[i]);
+        	}
+        }
         
-        System.out.print(answer);
+        int idx = 0;
+        
+        for(int i = 1; i <= maxLen; i++) {
+        	if(lines[i] != null) {
+        		selected[idx++] = lines[i].get(0);
+        	}
+        }
+        
+        
+        System.out.print(lis());
 
     }
 
@@ -50,7 +63,7 @@ public class Main {
         for(int i = idx; i <= maxLen; i++) {
             if(lines[i] == null) continue;
             //있다면 최장수열 후보만들기
-            for(int j = 0; j < lines[i].size(); j++) {
+            for(int j = 0; j < 1; j++) {
                 selected[depth] = lines[i].get(j);
                 dfs(depth + 1, i + 1);
                 selected[depth] = 0;
