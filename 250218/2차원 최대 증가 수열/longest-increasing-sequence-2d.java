@@ -20,7 +20,7 @@ public class Main {
         for(int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
 
-            for(int j = 0; j < N; j++) {
+            for(int j = 0; j < M; j++) {
                 grid[i][j] = Integer.parseInt(st.nextToken());
             }
         }
@@ -30,9 +30,11 @@ public class Main {
         int preScore = grid[0][0];
         int preR = 0;
         int preC = 0;
-        int ans = 0 ;
+        int ans = 1;
+
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < M; j++) {
+
                 if(i == 0 && j != 0 || i > 0 && j == 0) continue;
 
                 for(int ii = i + 1; ii < N; ii++) {
@@ -46,6 +48,7 @@ public class Main {
                 }
             }
         }
+
 
         System.out.print(ans);
 
