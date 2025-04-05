@@ -287,13 +287,13 @@ public class Main {
                 stoneMemo[r][i] = 1;
             }
             if(cmd == 0) {
-                checkSafeArea(r - 1, c, start - 1, dir, cmd, cnt + 1);
+                checkSafeArea(r - 1, c, origin - 1, dir, cmd, cnt + 1);
             }
             else if(cmd == 1){
-                checkSafeArea(r - 1, c, start, dir, cmd, cnt);
+                checkSafeArea(r - 1, c, origin, dir, cmd, cnt);
             }
             else{
-                checkSafeArea(r - 1, c, start, dir, cmd, cnt + 1);
+                checkSafeArea(r - 1, c, origin, dir, cmd, cnt + 1);
             }
         }
 
@@ -303,13 +303,13 @@ public class Main {
                 stoneMemo[r][i] = 1;
             }
             if(cmd == 0) {
-                checkSafeArea(r + 1, c, start - 1, dir, cmd, cnt + 1);
+                checkSafeArea(r + 1, c, origin - 1, dir, cmd, cnt + 1);
             }
             else if(cmd == 1){
-                checkSafeArea(r + 1, c, start, dir, cmd, cnt );
+                checkSafeArea(r + 1, c, origin, dir, cmd, cnt );
             }
             else{
-                checkSafeArea(r + 1, c, start, dir, cmd, cnt + 1);
+                checkSafeArea(r + 1, c, origin, dir, cmd, cnt + 1);
             }
         }
 
@@ -319,13 +319,13 @@ public class Main {
                 stoneMemo[i][c] = 1;
             }
             if(cmd == 0) {
-                checkSafeArea(r, c - 1, start - 1, dir, cmd, cnt + 1);
+                checkSafeArea(r, c - 1, origin - 1, dir, cmd, cnt + 1);
             }
             else if (cmd == 1) {
-                checkSafeArea(r, c - 1, start, dir, cmd, cnt );
+                checkSafeArea(r, c - 1, origin, dir, cmd, cnt );
             }
             else{
-                checkSafeArea(r, c - 1, start, dir, cmd, cnt + 1);
+                checkSafeArea(r, c - 1, origin, dir, cmd, cnt + 1);
             }
 
         }
@@ -335,13 +335,13 @@ public class Main {
                 stoneMemo[i][c] = 1;
             }
             if(cmd == 0) {
-                checkSafeArea(r, c + 1, start -1, dir, cmd, cnt + 1);
+                checkSafeArea(r, c + 1, origin -1, dir, cmd, cnt + 1);
             }
             else if(cmd == 1) {
-                checkSafeArea(r, c + 1, start, dir, cmd, cnt);
+                checkSafeArea(r, c + 1, origin, dir, cmd, cnt);
             }
             else {
-                checkSafeArea(r, c + 1, start, dir, cmd, cnt + 1);
+                checkSafeArea(r, c + 1, origin, dir, cmd, cnt + 1);
             }
         }
     }
