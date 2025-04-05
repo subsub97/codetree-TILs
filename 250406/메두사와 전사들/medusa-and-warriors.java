@@ -370,8 +370,6 @@ public class Main {
 
             if(current.r == curR && current.c == curC) {
                 // 공격당한 전사
-
-                //TODO: count 0 처리했나?
                 continue;
             }
 
@@ -388,6 +386,7 @@ public class Main {
                 Pair next = getNextSpot(current, j);
                 if(next.r != current.r || next.c != current.c) moveCnt++;
                 counts[current.r][current.c]--;
+                if(counts[current.r][current.c] < 0)counts[current.r][current.c] = 0;
                 current.r = next.r;
                 current.c = next.c;
                 if(next.r == -1 && next.c == -1) {
@@ -424,6 +423,7 @@ public class Main {
                 if (inRange(nr, nc) && canLessDistance(cur.r, cur.c, nr, nc) && stoneMemo[nr][nc] != 2) {
                     if (nr == curR && nc == curC) {
                         counts[cur.r][cur.c]--;
+                        if(counts[cur.r][cur.c] < 0)counts[cur.r][cur.c] = 0;
                         return new Pair(-1, -1);
                     }
                     return new Pair(nr, nc);
