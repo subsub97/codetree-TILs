@@ -241,7 +241,7 @@ public class Main {
                     // c를 기준으로 전파
                     if(curR > i) { // 메두사보다 위에 있는 경우
                         checkSafeArea(r, c - 1, i - 1, dir, 0, 2);
-                    } else if (curC == i) { // 동일 선상인 경우
+                    } else if (curR == i) { // 동일 선상인 경우
                         checkSafeArea(r, c - 1, i, dir, 1, 1);
                     }
                     else{ // 메두사보다 아래 있는 경우
@@ -261,7 +261,7 @@ public class Main {
                     // c를 기준으로 전파
                     if(curR > i) { // 메두사보다 위에 있는 경우
                         checkSafeArea(r, c + 1, i - 1, dir, 0, 2);
-                    } else if (curC == i) { // 동일 선상인 경우
+                    } else if (curR == i) { // 동일 선상인 경우
                         checkSafeArea(r, c + 1, i, dir, 1, 1);
                     }
                     else{ // 메두사보다 아래 있는 경우
