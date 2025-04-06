@@ -56,6 +56,7 @@ public class Main {
             // 갈 수 있는 경우니까 움직이면서 해야함
             //TODO :: curR, curC 설정하기
             for(int i = 1; i < paths.length; i++) {
+
                 int moveCnt = 0;
                 int stoneCnt = 0;
                 int attackCnt = 0;
@@ -73,7 +74,9 @@ public class Main {
                 int max = 0;
                 int dir = 0;
                 for(int j = 0; j < 4; j++) {
+
                     stoneMemo = new int[N][N];
+
                     if(j == 0){
                         int cur = Math.max(max, checkRange(sr - 1, sc, sc - 1, j, 3));
                         if(cur > max) {
@@ -116,18 +119,32 @@ public class Main {
                 // 전사 이동 및 공격
                 int[] result = warriorMoveAndAttack();
 
+                // 전사 수 그리드 업데이트
+                updateWarriorGrid();
+
                 moveCnt = result[0];
                 attackCnt = result[1];
                 sb.append(moveCnt).append(" ").append(stoneCnt).append(" ").append(attackCnt).append("\n");
             }
             sb.append("0");
             System.out.println(sb);
-
-
         }
         else{
             System.out.println(-1);
         }
+    }
+
+    private static void updateWarriorGrid() {
+        counts = new int[N][N];
+        int size = wq.size();
+
+        for(int i = 0; i < size; i++) {
+            Pair p = wq.poll();
+
+            counts[p.r][p.c]++;  
+            wq.add(p);
+        }
+
     }
 
     //메두사의 집부터 공원까지 가는 경로 없으면 -1 출력
@@ -231,7 +248,7 @@ public class Main {
                 if(stoneMemo[r][i] != 1) stoneMemo[r][i] = 2;
 
             }
-            return sum + checkRange(r + 1, c, start - 1, dir, cnt + 2);
+            return sum + checkRange(r + 1, c, origin - 1, dir, cnt + 2);
         }
 
         else if(dir == 2){
@@ -249,10 +266,11 @@ public class Main {
                     }
                     sum += counts[i][c];
                 }
-                if(stoneMemo[i][c] != 1) stoneMemo[i][c] = 2;
-
+                    if(stoneMemo[i][c] != 1) {
+                        stoneMemo[i][c] = 2;
+                    }
             }
-            return sum + checkRange(r, c - 1, start - 1, dir, cnt + 2);
+            return sum + checkRange(r, c - 1, origin - 1, dir, cnt + 2);
         }
         else {
             for(int i = start; i < origin + cnt; i++) {
@@ -271,7 +289,7 @@ public class Main {
                 }
                 if(stoneMemo[i][c] != 1) stoneMemo[i][c] = 2;
             }
-            return sum + checkRange(r, c + 1, start - 1, dir, cnt + 2);
+            return sum + checkRange(r, c + 1, origin - 1, dir, cnt + 2);
         }
     }
 
@@ -385,8 +403,6 @@ public class Main {
             for(int j = 1; j <= 2; j++) {
                 Pair next = getNextSpot(current, j);
                 if(next.r != current.r || next.c != current.c) moveCnt++;
-                counts[current.r][current.c]--;
-                if(counts[current.r][current.c] < 0)counts[current.r][current.c] = 0;
                 current.r = next.r;
                 current.c = next.c;
                 if(next.r == -1 && next.c == -1) {
@@ -394,7 +410,6 @@ public class Main {
                     canAttack = true;
                     break;
                 }
-                counts[current.r][current.c]++;
             }
 
             if(canAttack) {
@@ -422,7 +437,6 @@ public class Main {
 
                 if (inRange(nr, nc) && canLessDistance(cur.r, cur.c, nr, nc) && stoneMemo[nr][nc] != 2) {
                     if (nr == curR && nc == curC) {
-                        counts[cur.r][cur.c]--;
                         if(counts[cur.r][cur.c] < 0)counts[cur.r][cur.c] = 0;
                         return new Pair(-1, -1);
                     }
@@ -433,8 +447,8 @@ public class Main {
         else{
             // 두번째 이동인 경우
             // idx == 2부터 4번
-            for(int i = 2; i < 6; i++) {
-                int idx = i % 4;
+            for(int i = 0; i < 4; i++) {
+                int idx = (i + 2) % 4;
                 int nr = cur.r + drs[idx];
                 int nc = cur.c + dcs[idx];
 
@@ -450,7 +464,9 @@ public class Main {
     }
 
     private static boolean canLessDistance(int preR, int preC, int nR, int nC) {
-        return Math.abs(preR - curR) > Math.abs(nR - curR) || Math.abs(preC - curC) > Math.abs(nC - curC);
+        int oldDist = Math.abs(preR - curR) + Math.abs(preC - curC);
+        int newDist = Math.abs(nR - curR) + Math.abs(nC - curC);
+        return newDist < oldDist;
     }
 
 
