@@ -5,9 +5,10 @@ import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int R,C,K; // 숲 행 , 숲 옆, 정령의 수
+    static int R, C, K; // 숲 행 , 숲 옆, 정령의 수
     static int answer;
     static int[][] grid;
+    static int[][] exitGrid;
     static int[] drs = {-1, 0, 1, 0};
     static int[] dcs = {0, 1, 0, -1};
 
@@ -21,8 +22,9 @@ public class Main {
 
         answer = 0;
         grid = new int[R][C];
+        exitGrid = new int[R][C];
 
-        for(int i = 0; i < K; i++) {
+        for (int i = 0; i < K; i++) {
             //각 골렘이 출발하는 열 Ci, 골렘의 출구 방향 정보 di 제공
             // 북 동 남 서
             st = new StringTokenizer(br.readLine());
@@ -31,7 +33,7 @@ public class Main {
             int d = Integer.parseInt(st.nextToken());
 
             Golem gol = new Golem(1, c, d);
-            simulate(gol);
+            simulate(gol, i + 1);
             //골렘 내리기..
         }
 
@@ -42,35 +44,34 @@ public class Main {
     // 골렘 내려가기 구현
     // -> 직선, 서쪽, 동쪽
     // -> 현재 숲 골렘 정보 기록하기.
-    private static void simulate(Golem gol) {
+    private static void simulate(Golem gol, int color) {
 
         //하강
-        if(!downGolem(gol)) {
+        if (!downGolem(gol)) {
             grid = new int[R][C];
+            exitGrid = new int[R][C];
             return;
         }
 
-        gol.drawGolemTwo();
+        gol.color = color;
+        gol.drawMyGolem();
+        moveFairy(gol); //최대로 내려갔으면 정렬 탈출
 
-        moveFairy(gol);//최대로 내려갔으면 정렬 탈출
-        gol.drawGolemOne();
-        
     }
 
     private static boolean downGolem(Golem gol) {
         int r = gol.row;
         int c = gol.col;
 
-
-        while(true) {
+        while (true) {
             // 0 : 직 , 1 : 서쪽 턴 하강, 2 : 동쪽 턴 하강
-            while(canCenterDown(r, c)) {
+            while (canCenterDown(r, c)) {
                 // 하강 가능한 경우 계속 내려가기
                 r++;
             }
 
             // 서쪽 턴 하강
-            if(canLeftDown(r,c)) {
+            if (canLeftDown(r, c)) {
                 r++;
                 c--;
 
@@ -78,17 +79,16 @@ public class Main {
                 continue;
             }
 
-            if(canRightDown(r,c)) {
+            if (canRightDown(r, c)) {
                 r++;
                 c++;
-
 
                 gol.dir = (gol.dir + 1) % 4;
                 continue;
 
             }
 
-            if(!inGrid(r,c)) {
+            if (!inGrid(r, c)) {
                 return false;
             }
 
@@ -106,23 +106,27 @@ public class Main {
         Pair rp = new Pair(r + 1, c + 1);
 
         // 하강 가능한 범위 판단
-        if(!inRange(lp) || !inRange(dp) || !inRange(rp)) return false;
+        if (!inRange(lp) || !inRange(dp) || !inRange(rp))
+            return false;
         // 겹치는지 확인
-        if(isOverlap(lp) || isOverlap(dp) || isOverlap(rp)) return false;
+        if (isOverlap(lp) || isOverlap(dp) || isOverlap(rp))
+            return false;
 
         // 하강
         return true;
     }
 
     private static boolean canLeftDown(int r, int c) {
-        Pair lup = new Pair(r - 1, c- 1);
+        Pair lup = new Pair(r - 1, c - 1);
         Pair lp = new Pair(r, c - 2);
-        Pair lldp = new Pair(r + 1, c- 2);
-        Pair ldp = new Pair(r + 1, c- 1);
+        Pair lldp = new Pair(r + 1, c - 2);
+        Pair ldp = new Pair(r + 1, c - 1);
         Pair lddp = new Pair(r + 2, c - 1);
 
-        if(!inRange(lup) || !inRange(lp) || !inRange(lldp) || !inRange(ldp) || !inRange(lddp)) return false;
-        if(isOverlap(lup) || isOverlap(lp) || isOverlap(lldp) || isOverlap(ldp) || isOverlap(lddp)) return false;
+        if (!inRange(lup) || !inRange(lp) || !inRange(lldp) || !inRange(ldp) || !inRange(lddp))
+            return false;
+        if (isOverlap(lup) || isOverlap(lp) || isOverlap(lldp) || isOverlap(ldp) || isOverlap(lddp))
+            return false;
 
         return true;
     }
@@ -134,8 +138,10 @@ public class Main {
         Pair rdp = new Pair(r + 1, c + 1);
         Pair rddp = new Pair(r + 2, c + 1);
 
-        if(!inRange(rup) || !inRange(rp) || !inRange(rrdp) || !inRange(rdp) || !inRange(rddp)) return false;
-        if(isOverlap(rup) || isOverlap(rp) || isOverlap(rrdp) || isOverlap(rdp) || isOverlap(rddp)) return false;
+        if (!inRange(rup) || !inRange(rp) || !inRange(rrdp) || !inRange(rdp) || !inRange(rddp))
+            return false;
+        if (isOverlap(rup) || isOverlap(rp) || isOverlap(rrdp) || isOverlap(rdp) || isOverlap(rddp))
+            return false;
 
         return true;
     }
@@ -145,7 +151,7 @@ public class Main {
     }
 
     private static boolean isOverlap(Pair p) {
-        return grid[p.r][p.c] == 1;
+        return grid[p.r][p.c] != 0;
     }
 
     private static boolean inGrid(int r, int c) {
@@ -155,35 +161,52 @@ public class Main {
     private static void moveFairy(Golem gol) {
         //현재 골램의 방향
         int dir = gol.dir;
+        int max = 0;
+        boolean[][] visited = new boolean[R][C];
 
         int exitRow = gol.row + drs[dir];
         int exitCol = gol.col + dcs[dir];
 
-        int max = 0;
-        //연결된 골렘이 있는지 확인한다.
-        Result result = canMoveAnotherGolem(exitRow, exitCol);
-        if(result.canMove) {
-            max = getMaxDepth(result.pair.r, result.pair.c, 1);
-        }
+        exitGrid[exitRow][exitCol] = 1;
 
-        max = Math.max(max, getMaxDepth(gol.row, gol.col, 2));
+        ArrayDeque<Pair> q = new ArrayDeque<>();
+
+        q.add(new Pair(gol.row, gol.col));
+
+        while (!q.isEmpty()) {
+            Pair cur = q.poll();
+
+            if (exitGrid[cur.r][cur.c] == 1) {
+                // 다른골렘이랑 커넥션이 있는지 체크
+                for (int i = 0; i < 4; i++) {
+                    int nr = cur.r + drs[i];
+                    int nc = cur.c + dcs[i];
+
+                    if (inRange(new Pair(nr, nc)) && grid[nr][nc] != 0 && !visited[nr][nc]) {
+                        q.add(new Pair(nr, nc));
+                        visited[nr][nc] = true;
+                        max = Math.max(nr, max);
+                    }
+                }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int nr = cur.r + drs[i];
+                int nc = cur.c + dcs[i];
+
+                if (inRange(new Pair(nr, nc)) && !visited[nr][nc] && grid[cur.r][cur.c] == grid[nr][nc]) {
+                    // 나랑 같은 골렘인 경우
+                    max = Math.max(max, nr);
+                    visited[nr][nc] = true;
+                    q.add(new Pair(nr, nc));
+                    // 같은 골렘은 아니지만 현재가 출구라 연결되어있어서 이동 가능한 경우
+                }
+            }
+        }
 
         answer += max - 1;
     }
 
-    // 연결된 1이 있는지 체크
-    private static Result canMoveAnotherGolem(int r, int c) {
-        for(int i = 0 ; i < 4; i++) {
-            int nr = r + drs[i];
-            int nc = c + dcs[i];
-
-            if(inRange(new Pair(nr,nc)) && grid[nr][nc] == 1) {
-                return new Result(true, new Pair(nr, nc));
-            }
-        }
-
-        return new Result(false,null);
-    }
 
     private static int getMaxDepth(int r, int c, int color) {
         ArrayDeque<Pair> q = new ArrayDeque<>();
@@ -191,14 +214,14 @@ public class Main {
         visited[r][c] = true;
         q.add(new Pair(r, c));
         int maxRow = 0;
-        while(!q.isEmpty()) {
+        while (!q.isEmpty()) {
 
             Pair cur = q.poll();
 
-            for(int i = 0; i < 4; i++) {
-                int nr = cur.r  + drs[i];
-                int nc = cur.c +  dcs[i];
-                Pair np = new Pair(nr,nc);
+            for (int i = 0; i < 4; i++) {
+                int nr = cur.r + drs[i];
+                int nc = cur.c + dcs[i];
+                Pair np = new Pair(nr, nc);
 
                 if (inRange(np) && grid[nr][nc] == color && !visited[nr][nc]) {
                     visited[nr][nc] = true;
@@ -215,55 +238,33 @@ public class Main {
         int row;
         int col;
         int dir;
+        int color;
 
-        Golem(int r, int c, int d){
+        Golem(int r, int c, int d) {
             row = r;
             col = c;
             dir = d;
         }
 
-        private void drawGolemOne() {
-            grid[this.row][this.col] = 1;
-            grid[this.row + 1][this.col] = 1;
-            grid[this.row][this.col - 1] = 1;
-            grid[this.row][this.col + 1] = 1;
-            grid[this.row-1][this.col] = 1;
+        private void drawMyGolem() {
+            grid[this.row][this.col] = color;
+            grid[this.row + 1][this.col] = color;
+            grid[this.row][this.col - 1] = color;
+            grid[this.row][this.col + 1] = color;
+            grid[this.row - 1][this.col] = color;
         }
 
-        private void drawGolemTwo() {
-            grid[this.row][this.col] = 2;
-            grid[this.row + 1][this.col] = 2;
-            grid[this.row][this.col - 1] = 2;
-            grid[this.row][this.col + 1] = 2;
-            grid[this.row-1][this.col] = 2;
-        }
     }
 
     static class Pair {
         int r;
         int c;
-        Pair(int r, int c){
+
+        Pair(int r, int c) {
             this.r = r;
             this.c = c;
         }
     }
-
-    static class Result {
-        boolean canMove;
-        Pair pair;
-
-        Result(boolean cm, Pair p) {
-            canMove = cm;
-            pair = p;
-        }
-    }
-
-
-    // 골렘이 숲에 포함되는지 구현
-
-    // 정령이 어디까지 내려갈 수 있는지 구현
-
-
 }
 
 /*
