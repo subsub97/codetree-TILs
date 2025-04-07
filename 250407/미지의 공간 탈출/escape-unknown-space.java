@@ -14,7 +14,7 @@ public class Main {
 	static int[] drs = {0, 0, 1, -1};
 	static int[] dcs = {1, -1, 0, 0};
 	static Node[] Nodes;
-	static int[][] paths = new int[][] {{1,2}, {2,1}, {0,1},{1,0}}; 
+	static int[][] paths = new int[][] {{3,2}, {2,3}, {0,1},{1,0}}; 
 	static boolean[][][] visited;
  	
 	public static void main(String[] args) throws IOException {
@@ -116,11 +116,12 @@ public class Main {
 				int nr = cur.r + drs[i];
 				int nc = cur.c + dcs[i];
 				
-			
-				if(!inRange(nr,nc) || arr2d[nr][nc] == 1 ||arr2d[nr][nc] == -1 || (arr2d[nr][nc] != 0 && arr2d[nr][nc] <= cur.d + 1) || visited[nr][nc]) continue;
 				if(nr == targetR && nc == targetC) {
 					return cur.d + 1;
 				}
+				
+				if(!inRange(nr,nc) || arr2d[nr][nc] == 1 ||arr2d[nr][nc] == -1 || (arr2d[nr][nc] != 0 && arr2d[nr][nc] <= cur.d + 1) || visited[nr][nc]) continue;
+
 				visited[nr][nc] = true;
 				q.add(new Node(nr, nc, cur.d + 1, 0));				
 			}
