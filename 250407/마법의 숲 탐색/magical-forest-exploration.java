@@ -54,6 +54,7 @@ public class Main {
 
         moveFairy(gol);//최대로 내려갔으면 정렬 탈출
         gol.drawGolemOne();
+        
     }
 
     private static boolean downGolem(Golem gol) {
@@ -81,13 +82,10 @@ public class Main {
                 r++;
                 c++;
 
-                if(!inGrid(r,c)) {
-                    break;
-                }
-                else {
-                    gol.dir = (gol.dir + 1) % 4;
-                    continue;
-                }
+
+                gol.dir = (gol.dir + 1) % 4;
+                continue;
+
             }
 
             if(!inGrid(r,c)) {
