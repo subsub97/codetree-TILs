@@ -78,7 +78,7 @@ public class Main {
         // 각도 선택 90 -> 180 -> 270 -> 360
         int[][] originGrid = copyGrid(grid);
 
-        for(int i = 1; i <= 4; i++) {
+        for(int i = 1; i < 4; i++) {
             // 열이 작은거 먼저 선택
             for (int c = 1; c <= 3; c++) {
                 //행이 작은거 먼저 선택
@@ -303,3 +303,4 @@ static class Node implements Comparable<Node>{
 // 새로운 유물 조각이 생겨난 이후에도 조각들이 3개 이상 연결될 수 있다.
 // 그럼 유물획득과 동일하게 3개이상 존재하면 사라진다.
 // 없을때까지 반복
+
