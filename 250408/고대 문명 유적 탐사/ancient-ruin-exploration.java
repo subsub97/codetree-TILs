@@ -16,6 +16,7 @@ public class Main {
     static int ans = 0;
     static ArrayDeque<Integer> q = new ArrayDeque<>();
     static ArrayDeque<Integer> originQ = new ArrayDeque<>();
+    static ArrayDeque<Integer> maxQ = new ArrayDeque<>();
     static ArrayDeque<Node> getQ = new ArrayDeque<>();
     static PriorityQueue<Node> pq = new PriorityQueue<>();
     static StringBuilder sb = new StringBuilder();
@@ -51,6 +52,13 @@ public class Main {
             }
 
             grid = copyGrid(mTemp);
+            originQ = new ArrayDeque<>();
+            int size = q.size();
+            for(int j = 0; j < size; j++) {
+                int num = q.poll();
+                originQ.add(num);
+                q.add(num);
+            }
         }
 
         System.out.println(sb);
@@ -85,11 +93,10 @@ public class Main {
                 for (int r = 1; r <= 3; r++) {
                     int sum = 0;
                     for (int j = 0; j < i; j++) {
+                        // 돌리고
                         rotate(r,c);
                     }
-                    while(true) {
                         int curSum = 0;
-                        // 돌리고
 
                         getQ = new ArrayDeque<>();
                         // 유물캐고
@@ -99,25 +106,18 @@ public class Main {
                         if(curSum >= 3) {
                             putBlock();
                             sum += curSum;
-                            curSum = 0;
-
                         }
 
-                        // 유물캐고
-                        curSum += getGold();
-                        if(curSum >= 3 ) {
-                            putBlock();
-                            sum += curSum;
+                        if(max < sum) {
+                            max = sum;
+                            mTemp = copyGrid(grid);
+                            maxQ = new ArrayDeque<>();
+
+                            while(!q.isEmpty()) {
+                                maxQ.add(q.poll());
+                            }
                         }
 
-                        if (curSum == 0){
-                            break;
-                        }
-                    }
-                    if(ans < sum) {
-                        ans = sum;
-                        mTemp = copyGrid(grid);
-                    }
                     // 초기화
                     grid = copyGrid(originGrid);
                     q = copyQueue();
@@ -125,12 +125,30 @@ public class Main {
 
             }
         }
+
+        grid = copyGrid(mTemp);
+        // 연쇄 파편 획득
+        int curSum = 3;
+        q = maxQ;
+        // 유물캐고
+        while(curSum >= 3) {
+            curSum = 0;
+            curSum += getGold();
+            if(curSum >= 3 ) {
+                putBlock();
+                max += curSum;
+                mTemp = copyGrid(grid);
+            }
+        }
+
+        ans = max;
         return max;
     }
 
     private static void putBlock() {
         // getQ에서 꺼내고 부시면서 pq에 넣기
         boolean[][] visited = new boolean[R][C];
+        ArrayDeque<Node> temp = new ArrayDeque<>();
 
         while(!getQ.isEmpty()) {
             Node cur = getQ.poll();
@@ -147,6 +165,11 @@ public class Main {
                     getQ.add(next);
                 }
             }
+            temp.add(new Node(cur.r, cur.c));
+        }
+
+        while(!temp.isEmpty()) {
+            Node cur = temp.poll();
             grid[cur.r][cur.c] = 0;
         }
 
@@ -303,4 +326,3 @@ static class Node implements Comparable<Node>{
 // 새로운 유물 조각이 생겨난 이후에도 조각들이 3개 이상 연결될 수 있다.
 // 그럼 유물획득과 동일하게 3개이상 존재하면 사라진다.
 // 없을때까지 반복
-
