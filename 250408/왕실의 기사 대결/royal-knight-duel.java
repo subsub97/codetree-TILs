@@ -192,7 +192,7 @@ public class Main {
                     if(!canMove(nextR ,nextC)) return false;
 
                     // 해당 구역에 다른 기사가 있는지 판단.
-                    if(kGrid[nextR][nextC] != 0 && kGrid[nextR][nextC] != curKnightColor) {
+                    if(kGrid[nextR][nextC] != 0 && kGrid[nextR][nextC] != curKnightColor && !moved[kGrid[nextR][nextC] - 1]) {
                         int anotherKIdx = kGrid[nextR][nextC] - 1;
                         moved[anotherKIdx] = true;
                         q.add(new Node(anotherKIdx, dir));
