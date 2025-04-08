@@ -73,6 +73,8 @@ public class Main {
 
                 // 움직인 병사 피 깍고 제외하기.
                 updateKnightStat(kIdx);
+
+                //TODO 안움직인 기사들이 사라진다.
                 kGrid = copyArr(newKGrid);
             }
             else{
@@ -177,6 +179,8 @@ public class Main {
 
             int nr = ck.r + drs[dir];
             int nc = ck.c + dcs[dir];
+            ck.r = nr;
+            ck.c = nc;
             // 이동 가능 여부 판단.
             // 기사의 방패 크기 만큼 체므
             for(int i = 0; i < ck.h; i++) {
@@ -205,15 +209,19 @@ public class Main {
             // 이때 제외된 기사인 경우 체크 패스?? 일단 보류
         }
 
-//        for (int i = 0; i < L; i++) {
-//            for (int j = 0; j < L; j++) {
-//                System.out.print(newKGrid[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
+        // 안움직였던 애들은 그대로 그려주기
+        for(int i = 0; i < N; i++) {
+            if (!moved[i]) {
+                //안 움직인 경우
+                Knight cur = knights[i];
 
-
-
+                for(int r = 0; r < cur.h; r++) {
+                    for (int c = 0; c < cur.w; c++) {
+                        newKGrid[cur.r + r][cur.c + c] = i + 1;
+                    }
+                }
+            }
+        }
 
         return true;
     }
