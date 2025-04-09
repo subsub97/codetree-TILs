@@ -59,18 +59,19 @@ public class Main {
     		for(int j = 1 ; j <= M; j++) {
     			if(isFinish[j]) continue;
     			
-    			// 거리 받아오고
-    			checkMinPath(j);
-    			// 이동하기
     			Human curH = humans[j];
+    			// 거리 받아오고
+    			int curMin = getMinDistance(curH.r , curH.c);
+    			// 이동하기    			
     			int r = curH.r;
     			int c = curH.c;
     			
     			for(int d = 0; d < 4; d++) {
     				int nr = curH.r + drs[d];
     				int nc = curH.c + dcs[d];
+    				int nMin = getMinDistance(nr,nc);
     				
-    				if(inRange(nr,nc) && minPath[nr][nc] && walls[nr][nc] <= 0) {
+    				if(inRange(nr,nc) && curMin > nMin && walls[nr][nc] <= 0) {
     					// 이동 가능한 경우
     					curH.r = nr;
     					curH.c = nc;
@@ -212,56 +213,8 @@ public class Main {
     
 
     // 출구까지 최단 거리 구하는 함수
-    static private void checkMinPath(int hIdx) {
-    	minPath = new boolean[N][N];
-    	boolean[][] visited = new boolean[N][N];
-    	
-    	ArrayDeque<Human> q = new ArrayDeque<>();
-    	Human cur = humans[hIdx];
-    	
-    	Pair[] initPath = new Pair[1];
-    	initPath[0] = new Pair(cur.r, cur.c);
-    	Human temp = new Human(cur.r, cur.c, 0,initPath);
-    	visited[cur.r][cur.c] = true;
-    	
-    	int minDistance = (int) 1e9;
-    	q.add(temp);
-    	
-    	while(!q.isEmpty()) {
-    		Human h = q.poll();
-    		
-    		for(int i = 0 ; i < 4; i++) {
-    			int nr = h.r + drs[i];
-    			int nc = h.c + dcs[i];
-    			
-    			if(!inRange(nr, nc) || visited[nr][nc]) continue;
-    			
-    			visited[nr][nc] = true;
-    			if(nr == er && nc == ec) {
-    				// 출구인 경우
-    				visited[nr][nc] = false;
-    				if(h.cnt + 1 <= minDistance) {
-    					minDistance = h.cnt + 1;
-    					minPath[nr][nc] = true;
-    					// 현재 도달한 경로 체크하기
-    					for(int j = 1; j < h.path.length; j++) {
-    						Pair cp = h.path[j];
-    						minPath[cp.r][cp.c] = true;
-    					}
-    			
-    				}
-    				continue;
-    			}
-    			// 움직인 히스토리 관리하기
-    			if(minDistance > h.cnt) {
-    				//TODO 수정했는데 검증은 안함
-    				q.add(new Human(nr,nc,h.cnt + 1, h.path));	
-    			}
-    			
-    		}
-    		
-    	}
-
+    static private int getMinDistance(int r , int c) {	
+    	return Math.abs(r - er) + Math.abs(c - ec);
     }
     
     static private boolean inRange(int r, int c) {
