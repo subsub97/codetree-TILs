@@ -159,7 +159,7 @@ public class Main {
     	int power = grid[wt.r][wt.c]; 
     			
     	grid[r][c] -= power;
-    	visited[r][c] = true;
+    	used[r][c] = true;
     	for(int i = 0; i < 8; i++) {
     		int nr = r + drs[i];
     		int nc = c + dcs[i];
