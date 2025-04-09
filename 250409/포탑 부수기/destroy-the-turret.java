@@ -82,7 +82,7 @@ public class Main {
     
     static private void simulate() {
     	used = new boolean[N][M];
-    	
+    	visited = new boolean[N][M];
     	Attack();
     	removeTower();
     	repairTower();
@@ -97,7 +97,7 @@ public class Main {
     	atkGrid[wt.r][wt.c]++;
     	grid[wt.r][wt.c] += POWER;
     	used[wt.r][wt.c] = true;
-    	visited = new boolean[N][M];
+    	
     	// 가장 약한 포탑이 가장 강한 포탑을 공격
     	if(canAtkLaser(wt, st)) {
     		//레이저 공격 가능한 경우
@@ -168,7 +168,7 @@ public class Main {
     		nc = getValidValue(nc, 1);
     		
     		if(grid[nr][nc] <= 0 && (nr == wt.r && nc == wt.c)) continue;
-    		visited[nr][nc] = true;
+    		used[nr][nc] = true;
     		grid[nr][nc] -= power/2;
      	}
     }
