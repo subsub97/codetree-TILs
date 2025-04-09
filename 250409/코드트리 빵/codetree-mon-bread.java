@@ -85,6 +85,12 @@ public class Main {
 			elapsedTime++;
 			moveHuman();
 			// 편의점 도달시 멈추기
+			//사용 불가 체크
+			while(!bq.isEmpty()) {
+				Pair p = bq.poll();
+				
+				blocked[p.r][p.c] = true;
+			}
 			
 			// 시간 됐으니까 베이스캠프 찾아주기
 			if(elapsedTime <= M) {
@@ -95,12 +101,7 @@ public class Main {
 				hq.add(new Human(camp.r,camp.c,nh.t,tr,tc));
 			}
 			
-			//사용 불가 채크
-			while(!bq.isEmpty()) {
-				Pair p = bq.poll();
-				
-				blocked[p.r][p.c] = true;
-			}
+
 		}
 		
 		System.out.println(elapsedTime);
