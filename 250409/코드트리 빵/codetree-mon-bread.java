@@ -46,7 +46,7 @@ public class Main {
 	static int fCnt = 0;
 	
 	// 상 좌 우 하
-	static int[] drs = {-1, 0, 0, -1};
+	static int[] drs = {-1, 0, 0, 1};
 	static int[] dcs = {0, -1, 1, 0};
 	
 	public static void main(String[] args) throws IOException {
