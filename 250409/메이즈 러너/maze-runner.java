@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -13,7 +13,7 @@ public class Main {
 	
 	static int N,M,K,fcnt;
 	static int er, ec;
-	static int[] drs = {1,-1,0,0};
+	static int[] drs = {-1,1,0,0};
 	static int[] dcs = {0,0,1,-1};
 	
     public static void main(String[] args) throws IOException {
@@ -90,8 +90,9 @@ public class Main {
     				tempMaze[curH.r][curH.c]++;
     			}
     		}
-    		//TODO copy
+
     		maze = copyArr(tempMaze);
+    		
     		boolean flag = false;
     		int rotR = 0;
     		int rotC = 0;
@@ -140,6 +141,7 @@ public class Main {
     	// 영향 안받은 구간 넣어주고
     	int[][] tempGrid = new int[size][size];
     	int[][] tempWall = new int[size][size];
+    	ArrayList<Pair[]> list = new ArrayList<>();
     	
     	for(int j = 0; j < size; j++) {
     		for(int i = 0; i < size; i++) {
@@ -151,8 +153,11 @@ public class Main {
         				Human h = humans[k];
         				
         				if(h.r == j + r && h.c == i + c) {
-        					h.r = r + i;
-        					h.c = size - j - 1 + c;
+        					Pair[] pInfo = new Pair[2];
+        					// 0 은 인덱스 , 1인 이후
+        					pInfo[0] = new Pair(k, k);
+        					pInfo[1] = new Pair(r + i, size - j - 1 + c);
+        					list.add(pInfo);
         				}
         			}
         		}
@@ -163,9 +168,7 @@ public class Main {
         		}
         	}
     	}
-    	
-    	//원본에다가 넣어주기
-    	
+    		
     	for(int i = 0; i < size; i++) {
     		for(int j = 0; j < size; j++) {
         		maze[r+i][c+j] = tempGrid[i][j];
@@ -176,6 +179,14 @@ public class Main {
         		}
         	}
     	}
+    	
+    	// 이동하기
+    	for(Pair[] p : list) {
+    		Human h = humans[p[0].r];
+    		h.r = p[1].r;
+    		h.c = p[1].c;
+    	}
+    	
     	
     }
      
@@ -288,3 +299,4 @@ public class Main {
  * 
  * K초 반복 후 모든 참가자들의 이동 거리 합 과, 출구 좌표를 출력
 */
+
