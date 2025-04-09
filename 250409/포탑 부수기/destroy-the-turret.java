@@ -11,7 +11,7 @@ public class Main {
 	static boolean[][] used; // 유관한 포탑인지 판단.
 	static boolean[][] visited;
 	static int[][] atkGrid;
-	
+	static int tCnt = 0;
 	static int POWER;
 	static PriorityQueue<Tower> wpq = new PriorityQueue<>();
 	static PriorityQueue<Tower> spq = new PriorityQueue<>();
@@ -51,10 +51,14 @@ public class Main {
     		}
     	}
     
-    	for(int i = 0; i < K; i++) {
-    		simulate();
+    	for(int i = 1; i <= K; i++) {
+
+    		simulate(i);
+    		if(tCnt <= 1) {
+    			
+    			break;
+    		}
     	}
-    	
     	
     	System.out.println(spq.peek().p * -1);
     }
@@ -80,22 +84,24 @@ public class Main {
  *  -> 가장자리로 떨어지는 경우 M -> 0 으로 이동해서 공격
  */
     
-    static private void simulate() {
-    	used = new boolean[N][M];
+    static private void simulate(int time) {
+    	
     	visited = new boolean[N][M];
-    	Attack();
+    	Attack(time);
     	removeTower();
     	repairTower();
     	//포탑 우선순위 재정비
     	updateTower();
     }
 
-    static private void Attack() {
+    static private void Attack(int time) {
     	//가장 약한포탑, 강한 포탑 선정
     	Tower wt = findWeakTower();
     	Tower st = findStrongTower();
-    	atkGrid[wt.r][wt.c]++;
+    	
+    	atkGrid[wt.r][wt.c] = time;
     	grid[wt.r][wt.c] += POWER;
+    	used = new boolean[N][M];
     	used[wt.r][wt.c] = true;
     	
     	// 가장 약한 포탑이 가장 강한 포탑을 공격
@@ -106,6 +112,8 @@ public class Main {
     	}
     	else {
         	//포탑으로 공격
+    		used = new boolean[N][M];
+    		used[wt.r][wt.c] = true;
     		atkBall(wt, st);
     	}
     }
@@ -134,6 +142,8 @@ public class Main {
     	wpq = new PriorityQueue<>();
     	spq = new PriorityQueue<>();
     	
+    	tCnt = 0;
+    	
     	for(int i = 0; i < N; i++) {    	
     		for(int j = 0; j < M; j++) {    		
     			
@@ -144,7 +154,7 @@ public class Main {
     				int cnt = atkGrid[i][j];
     				Tower wt = new Tower(r,c,p,cnt);
     				Tower pt = new Tower(-r, -c, -p, -cnt);
-    				
+    				tCnt++;
     				wpq.add(wt);
     				spq.add(pt);
     			}
@@ -157,9 +167,13 @@ public class Main {
     	int r = st.r;
     	int c = st.c;
     	int power = grid[wt.r][wt.c]; 
-    			
-    	grid[r][c] -= power;
+    	
+    	if(r != wt.r || c != wt.c) {
+    		grid[r][c] -= power;	
+    	}
+    	
     	used[r][c] = true;
+    	
     	for(int i = 0; i < 8; i++) {
     		int nr = r + drs[i];
     		int nc = c + dcs[i];
@@ -167,7 +181,7 @@ public class Main {
     		nr = getValidValue(nr, 0);
     		nc = getValidValue(nc, 1);
     		
-    		if(grid[nr][nc] <= 0 && (nr == wt.r && nc == wt.c)) continue;
+    		if(grid[nr][nc] <= 0 || (nr == wt.r && nc == wt.c)) continue;
     		used[nr][nc] = true;
     		grid[nr][nc] -= power/2;
      	}
@@ -190,8 +204,9 @@ public class Main {
     static private boolean canAtkLaser(Tower wt, Tower st) {
     	// wt -> st 가는 경로 있니?
     	ArrayDeque<Node> q = new ArrayDeque<>();
-    	int power = grid[wt.r][wt.c];
+    	int power = grid[wt.r][wt.c]; // 가장 약한 포탑
     	visited[wt.r][wt.c] = true;
+    	used[wt.r][wt.c] = true;
     	
     	Pair[] history = new Pair[1];
     	history[0] = new Pair(wt.r, wt.c);
@@ -219,7 +234,7 @@ public class Main {
         				
         				for(int j = 1; j < cur.history.length; j++) {
         					Pair curP = cur.history[j];
-        					if(curP.r == wt.r && curP.c == wt.c) {
+        					if(used[curP.r][curP.c] || (curP.r == wt.r && curP.c == wt.c)) {
         						used[curP.r][curP.c] = true;
         						continue;
         					}
