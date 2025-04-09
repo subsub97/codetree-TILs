@@ -196,7 +196,7 @@ public class Main {
 			}
 		}
 		// 여기에 도달할 일은 없음 
-		return null;
+		return new Pair(maxR, maxC);
 	}
 	
 	static private Pair findNearStore(int r, int c, int tr, int tc) {
