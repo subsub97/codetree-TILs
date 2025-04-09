@@ -35,6 +35,16 @@ public class Main {
 		}
 	}
 	
+	static class Node {
+		Pair p;
+		int cnt; 
+		
+		Node(Pair p, int c) {
+			this.p = p;
+			cnt = c;
+		}
+	}
+	
 	static int N, M;
 	static int[][] grid;
 	static boolean[][] blocked; //이동 불가 구역 표시
@@ -146,26 +156,42 @@ public class Main {
 	 * 상 좌 우 하
 	 */
 	static private Pair findNearCamp(int r, int c) {
-		ArrayDeque<Pair> q = new ArrayDeque<>();
+		ArrayDeque<Node> q = new ArrayDeque<>();
 		boolean[][] vis = new boolean[N][N];
 		
-		q.add(new Pair(r,c));
+		q.add(new Node(new Pair(r,c),0));
+		int minValue = (int) 1e9;
+		int maxR = (int) 1e9;
+		int maxC = (int) 1e9;
 		
 		while(!q.isEmpty()) {
-			Pair cur = q.poll();
-			
+			Node cur = q.poll();
+			if(minValue < cur.cnt) {
+				//종료하기
+				bq.add(new Pair(maxR,maxC));
+				return new Pair(maxR, maxC);
+			}
 			for (int i = 0; i < 4; i++) {
-				int nr = cur.r + drs[i];
-				int nc = cur.c + dcs[i];
+				int nr = cur.p.r + drs[i];
+				int nc = cur.p.c + dcs[i];
 				
 				if(canMove(nr, nc) && !vis[nr][nc]) {
-					vis[nr][nc] = true;
+					
 					// 베이스 캠프인가요?
 					if(grid[nr][nc] == 1) {
-						bq.add(new Pair(nr,nc));
-						return new Pair(nr,nc);
+						minValue = cur.cnt;
+						if(maxR > nr) {
+							maxR = nr;
+							maxC = nc;
+						}
+						if(maxR == nr && maxC > nc) {
+							maxR = nr;
+							maxC = nc;
+						}
+						continue;
 					}
-					q.add(new Pair(nr, nc));
+					vis[nr][nc] = true;
+					q.add(new Node(new Pair(nr, nc),cur.cnt + 1));
 				}
 			}
 		}
